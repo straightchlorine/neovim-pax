@@ -8,6 +8,10 @@ local configuration = {}
     require('configuration.treesitter')
   end
 
+  configuration.lsp = function ()
+    require('configuration.lsp')
+  end
+
   configuration.cmp_ultisnips = function ()
     require('configuration.cmp_ultisnips')
   end
