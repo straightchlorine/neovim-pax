@@ -4,12 +4,17 @@
 ---
 
 local configuration = {}
+
   configuration.treesitter = function ()
     require('configuration.treesitter')
   end
 
-  configuration.lsp = function ()
-    require('configuration.lsp')
+  configuration.lspconfig = function ()
+    require('configuration.lspconfig')
+  end
+
+  configuration.cmp = function ()
+    require('configuration.cmp')
   end
 
   configuration.cmp_ultisnips = function ()
