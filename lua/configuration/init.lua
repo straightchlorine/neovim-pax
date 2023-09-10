@@ -45,4 +45,8 @@ local configuration = {}
     require('configuration.telescope')
   end
 
+  configuration.indent_blankline = function ()
+    require('configuration.blankline')
+  end
+
 return configuration

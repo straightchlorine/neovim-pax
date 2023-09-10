@@ -70,4 +70,8 @@ return require('packer').startup(function (use)
     config = config.telescope
   }
 
+  use { 'lukas-reineke/indent-blankline.nvim',
+    config = config.indent_blankline
+  }
+
 end)
