@@ -63,4 +63,6 @@ return require('packer').startup(function (use)
     tag = "*"
   }
 
+  use { 'skywind3000/asyncrun.vim' }
+
 end)
