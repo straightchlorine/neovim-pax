@@ -29,4 +29,8 @@ local configuration = {}
     require('configuration.tree')
   end
 
+  configuration.lualine = function ()
+    require('configuration.lualine')
+  end
+
 return configuration
