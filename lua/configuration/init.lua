@@ -33,4 +33,8 @@ local configuration = {}
     require('configuration.lualine')
   end
 
+  configuration.bufferline = function ()
+    require('configuration.bufferline')
+  end
+
 return configuration

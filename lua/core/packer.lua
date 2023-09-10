@@ -49,4 +49,8 @@ return require('packer').startup(function (use)
     config = config.lualine
   }
 
+  use { 'akinsho/bufferline.nvim',
+    tag = "*"
+  }
+
 end)
