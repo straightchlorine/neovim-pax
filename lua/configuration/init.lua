@@ -37,4 +37,8 @@ local configuration = {}
     require('configuration.bufferline')
   end
 
+  configuration.bqf = function ()
+    require('configuration.bqf')
+  end
+
 return configuration
