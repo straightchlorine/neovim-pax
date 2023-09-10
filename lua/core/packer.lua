@@ -65,4 +65,9 @@ return require('packer').startup(function (use)
 
   use { 'skywind3000/asyncrun.vim' }
 
+  use { 'nvim-telescope/telescope.nvim',
+    tag = '0.1.2',
+    config = config.telescope
+  }
+
 end)

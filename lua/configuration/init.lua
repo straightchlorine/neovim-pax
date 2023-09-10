@@ -41,4 +41,8 @@ local configuration = {}
     require('configuration.bqf')
   end
 
+  configuration.telescope = function ()
+    require('configuration.telescope')
+  end
+
 return configuration
