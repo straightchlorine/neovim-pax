@@ -10,8 +10,6 @@ return require('packer').startup(function (use)
 
   use { 'nvim-lua/plenary.nvim' }
 
-<<<<<<< Updated upstream
-=======
   use {'kevinhwang91/nvim-bqf',
     ft = 'qf',
     config = config.bqf
@@ -23,31 +21,30 @@ return require('packer').startup(function (use)
     end
   }
 
->>>>>>> Stashed changes
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = config.treesitter,
+    config = config.treesitter
   }
 
   -- autocompletion plugins
-<<<<<<< Updated upstream
   use { 'neovim/nvim-lspconfig' }
   use { 'hrsh7th/cmp-nvim-lsp' }
-=======
+
   use { 'neovim/nvim-lspconfig',
     requires = { 'hrsh7th/cmp-nvim-lsp' },
     config = config.lsp
   }
 
->>>>>>> Stashed changes
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
-  use { 'hrsh7th/ncim-cmp' }
+  use { 'petertriho/cmp-git' }
+
+  use { 'hrsh7th/nvim-cmp',
+    config = config.cmp
+  }
+
   use { 'SirVer/ultiships' }
-<<<<<<< Updated upstream
-  use { 'quangnguyen30192/cmp-nvim-ultisnips' }
-=======
 
   use { 'quangnguyen30192/cmp-nvim-ultisnips',
     config = config.cmp_ultisnips
@@ -80,9 +77,7 @@ return require('packer').startup(function (use)
 
   use { 'lukas-reineke/indent-blankline.nvim',
     config = config.blankline
-
   }
->>>>>>> Stashed changes
 
   use { 'tpope/vim-commentary' }
 
@@ -102,6 +97,8 @@ return require('packer').startup(function (use)
 
   use { 'machakann/vim-sandwich' }
 
-  use { 'michaeljsmith/vim-indent-object' }
+  use { 'michaeljsmith/vim-indent-object',
+    config = config.indent_blankline
+  }
 
 end)
