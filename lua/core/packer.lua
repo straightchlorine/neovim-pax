@@ -97,28 +97,6 @@ return require('packer').startup(function (use)
 
   use { 'machakann/vim-sandwich' }
 
-  use { 'michaeljsmith/vim-indent-object',
-    config = config.indent_blankline
-  }
-
-  use { 'tpope/vim-commentary' }
-
-  use { 'tpope/vim-obsession' }
-
-  use { 'tpope/vim-eunuch' }
-
-  use { 'Raimondi/delimitMate' }
-
-  use { 'simnalamburt/vim-mundo' }
-
-  use { 'godlygeek/tabular' }
-
-  use { 'chrisbra/unicode.vim' }
-
-  use { 'wellle/targets.vim' }
-
-  use { 'machakann/vim-sandwich' }
-
   use { 'michaeljsmith/vim-indent-object' }
 
 end)
