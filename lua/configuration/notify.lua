@@ -6,7 +6,7 @@ local notification = require('notify')
 
 notification.setup {
   background_colour = 'NotifyBackground',
-  fps = 165,
+  fps = 10,
   icons = {
     DEBUG = '',
     ERROR = '',
