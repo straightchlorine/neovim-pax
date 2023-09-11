@@ -2,4 +2,4 @@
 -- Configuration for nvim-bqf plugin.
 ---
 
-require("bqf").setup {}
+require('bqf').setup {}

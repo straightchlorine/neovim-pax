@@ -11,7 +11,8 @@ return require('packer').startup(function (use)
   use { 'nvim-lua/plenary.nvim' }
 
   use {'kevinhwang91/nvim-bqf',
-    ft = 'qf'
+    ft = 'qf',
+    config = config.bqf
   }
 
   use {'junegunn/fzf',
@@ -26,9 +27,12 @@ return require('packer').startup(function (use)
   }
 
   -- autocompletion plugins
+  use { 'neovim/nvim-lspconfig' }
+  use { 'hrsh7th/cmp-nvim-lsp' }
+
   use { 'neovim/nvim-lspconfig',
     requires = { 'hrsh7th/cmp-nvim-lsp' },
-    config = config.lspconfig
+    config = config.lsp
   }
 
   use { 'hrsh7th/cmp-buffer' }
@@ -60,7 +64,8 @@ return require('packer').startup(function (use)
   }
 
   use { 'akinsho/bufferline.nvim',
-    tag = "*"
+    tag = "*",
+    config = config.bufferline
   }
 
   use { 'skywind3000/asyncrun.vim' }
@@ -71,7 +76,27 @@ return require('packer').startup(function (use)
   }
 
   use { 'lukas-reineke/indent-blankline.nvim',
-    config = config.indent_blankline
+    config = config.blankline
   }
+
+  use { 'tpope/vim-commentary' }
+
+  use { 'tpope/vim-obsession' }
+
+  use { 'tpope/vim-eunuch' }
+
+  use { 'Raimondi/delimitMate' }
+
+  use { 'simnalamburt/vim-mundo' }
+
+  use { 'godlygeek/tabular' }
+
+  use { 'chrisbra/unicode.vim' }
+
+  use { 'wellle/targets.vim' }
+
+  use { 'machakann/vim-sandwich' }
+
+  use { 'michaeljsmith/vim-indent-object' }
 
 end)

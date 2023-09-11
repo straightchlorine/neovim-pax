@@ -9,8 +9,8 @@ local configuration = {}
     require('configuration.treesitter')
   end
 
-  configuration.lspconfig = function ()
-    require('configuration.lspconfig')
+  configuration.lsp = function ()
+    require('configuration.lsp')
   end
 
   configuration.cmp = function ()
@@ -45,7 +45,7 @@ local configuration = {}
     require('configuration.telescope')
   end
 
-  configuration.indent_blankline = function ()
+  configuration.blankline = function ()
     require('configuration.blankline')
   end
 
