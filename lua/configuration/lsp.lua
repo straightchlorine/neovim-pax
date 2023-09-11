@@ -1,4 +1,4 @@
---- lspconfig.lua
+--- lsp.lua
 -- Configuration for nvim-lspconfig.
 ---
 
