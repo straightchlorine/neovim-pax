@@ -26,20 +26,14 @@ return require('packer').startup(function (use)
     config = config.treesitter
   }
 
-  -- autocompletion plugins
-  use { 'neovim/nvim-lspconfig' }
   use { 'hrsh7th/cmp-nvim-lsp' }
-
   use { 'neovim/nvim-lspconfig',
-    requires = { 'hrsh7th/cmp-nvim-lsp' },
     config = config.lsp
   }
-
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
   use { 'petertriho/cmp-git' }
-
   use { 'hrsh7th/nvim-cmp',
     config = config.cmp
   }
