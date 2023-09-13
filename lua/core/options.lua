@@ -2,6 +2,8 @@
 -- Contains all the options.
 ---
 
+vim.g.mapleader = ' '
+
 vim.o.termguicolors  = true
 vim.o.redrawtime     = 1500
 vim.o.background     = 'dark'
