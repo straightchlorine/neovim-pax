@@ -108,4 +108,8 @@ return require('packer').startup(function (use)
     config = conf.fugitive
   }
 
+  use { 'rbong/vim-flog',
+    cmd = { 'Flog' }
+  }
+
 end)

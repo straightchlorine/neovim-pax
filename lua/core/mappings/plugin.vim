@@ -20,3 +20,6 @@ nnoremap <leader>]c <cmd>BufferlineCyclePrev<cr>
 nmap <leader>c <Plug>OSCYankOperator
 nmap <leader>cc <leader>c_
 vmap <leader>c <Plug>OSCYankVisual
+
+" vim-flog
+nnoremap <leader>gb <cmd>Flog<cr>
