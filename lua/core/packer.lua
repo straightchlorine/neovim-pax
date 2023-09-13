@@ -95,4 +95,8 @@ return require('packer').startup(function (use)
 
   use { 'andymass/vim-matchup' }
 
+  use { 'ojroques/vim-oscyank',
+    branch = 'main'
+  }
+
 end)
