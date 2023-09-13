@@ -2,6 +2,8 @@
 -- Contains all the options.
 ---
 
+vim.g.mapleader = ' '
+
 vim.o.termguicolors  = true
 vim.o.redrawtime     = 1500
 vim.o.background     = 'dark'
@@ -111,3 +113,6 @@ vim.o.linebreak      = true
 vim.o.breakat        = [[\ \	;:,!?]]
 vim.o.wildignore     = [[*.pyc,node_modules,.git]]
 vim.o.formatoptions  = 'tcraj'
+
+-- plugins
+vim.g.matchup_matchparen_offset = { method = 'popup' }
