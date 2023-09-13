@@ -99,4 +99,6 @@ return require('packer').startup(function (use)
 
   use { 'michaeljsmith/vim-indent-object' }
 
+  use { 'andymass/vim-matchup' }
+
 end)
