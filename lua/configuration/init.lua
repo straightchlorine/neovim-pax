@@ -53,4 +53,8 @@ local configuration = {}
     require('configuration.hop')
   end
 
+  configuration.fugitive = function ()
+    require('configuration.fugitive')
+  end
+
 return configuration

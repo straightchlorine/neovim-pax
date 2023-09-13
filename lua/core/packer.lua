@@ -104,4 +104,8 @@ return require('packer').startup(function (use)
     config = config.hop
   }
 
+  use { 'tpope/vim-fugitive',
+    config = conf.fugitive
+  }
+
 end)
