@@ -115,5 +115,7 @@ return require('packer').startup(function (use)
   use { 'lewis6991/gitsigns.nvim',
     config = config.gitsigns
   }
+  
+  use { 'andymass/diffview.nvim' }
 
 end)
