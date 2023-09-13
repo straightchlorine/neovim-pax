@@ -57,4 +57,8 @@ local configuration = {}
     require('configuration.fugitive')
   end
 
+  configuration.gitsigns = function ()
+    require('configuration.gitsigns')
+  end
+
 return configuration

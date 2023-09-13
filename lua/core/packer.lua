@@ -105,11 +105,15 @@ return require('packer').startup(function (use)
   }
 
   use { 'tpope/vim-fugitive',
-    config = conf.fugitive
+    config = config.fugitive
   }
 
   use { 'rbong/vim-flog',
     cmd = { 'Flog' }
+  }
+
+  use { 'lewis6991/gitsigns.nvim',
+    config = config.gitsigns
   }
 
 end)
