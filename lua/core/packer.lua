@@ -99,4 +99,9 @@ return require('packer').startup(function (use)
     branch = 'main'
   }
 
+  use { 'phaazon/hop.nvim',
+    branch = 'v2',
+    config = config.hop
+  }
+
 end)

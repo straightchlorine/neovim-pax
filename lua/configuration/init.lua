@@ -49,4 +49,8 @@ local configuration = {}
     require('configuration.blankline')
   end
 
+  configuration.hop = function ()
+    require('configuration.hop')
+  end
+
 return configuration
