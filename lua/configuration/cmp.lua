@@ -26,7 +26,17 @@ cmp.setup({
     { name = 'ultisnips' },
   }, {
     { name = 'buffer' },
-  })
+  }),
+  sorting = {
+    cmp.config.compare.offset,
+    cmp.config.compare.exact,
+    cmp.config.compare.score,
+    require 'cmp-under-comparator'.under,
+    cmp.config.compare.kind,
+    cmp.config.compare.sort_text,
+    cmp.config.compare.length,
+    cmp.config.compare.order,
+  }
 })
 
 cmp.setup.filetype('gitcommit', {

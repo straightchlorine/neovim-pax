@@ -34,6 +34,7 @@ return require('packer').startup(function (use)
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
   use { 'petertriho/cmp-git' }
+  use { 'lukas-reineke/cmp-under-comparator' }
   use { 'hrsh7th/nvim-cmp',
     config = config.cmp
   }
