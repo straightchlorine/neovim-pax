@@ -81,4 +81,8 @@ local configuration = {}
     require('configuration.hlslens')
   end
 
+  configuration.colorizer = function ()
+    require('configuration.colorizer')
+  end
+
 return configuration

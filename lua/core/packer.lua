@@ -151,4 +151,8 @@ return require('packer').startup(function (use)
     config = config.hlslens
   }
 
+  use { 'norcalli/nvim-colorizer.lua',
+    config = config.colorizer
+  }
+
 end)
