@@ -97,4 +97,12 @@ local configuration = {}
     require('configuration.ccc')
   end
 
+  configuration.gpt = function ()
+    require('configuration.gpt')
+  end
+
+  configuration.gpt = function ()
+    require('configuration.gpt')
+  end
+
 return configuration

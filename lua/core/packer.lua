@@ -172,4 +172,10 @@ return require('packer').startup(function (use)
     config = config.ccc
   }
 
+  use { 'MunifTanjim/nui.nvim' }
+
+  use { 'jackMort/ChatGPT.nvim',
+    config = config.gpt
+  }
+
 end)
