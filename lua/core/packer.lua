@@ -58,7 +58,7 @@ return require('packer').startup(function (use)
   }
 
   use { 'akinsho/bufferline.nvim',
-    tag = "*",
+    tag = '*',
     config = config.bufferline
   }
 
@@ -68,6 +68,10 @@ return require('packer').startup(function (use)
     tag = '0.1.2',
     config = config.telescope
   }
+
+  use { 'nvim-lua/popup.nvim' }
+
+  use { 'sudormrfbin/cheatsheet.nvim' }
 
   use { 'lukas-reineke/indent-blankline.nvim',
     config = config.blankline
@@ -117,5 +121,7 @@ return require('packer').startup(function (use)
   }
   
   use { 'andymass/diffview.nvim' }
+ 
+  use { 'lervag/vimtex' }
 
 end)
