@@ -44,6 +44,10 @@ return require('packer').startup(function (use)
     config = config.cmp_ultisnips
   }
 
+  use { 'folke/which-key.nvim',
+    config = config.key
+  }
+
   use { 'sakhnik/nvim-gdb' }
 
   use { 'mfussenegger/nvim-dap' }
@@ -84,8 +88,6 @@ return require('packer').startup(function (use)
   use { 'lukas-reineke/indent-blankline.nvim',
     config = config.blankline
   }
-
-  use { 'tpope/vim-commentary' }
 
   use { 'tpope/vim-obsession' }
 

@@ -2,6 +2,9 @@
 -- Contains all the options.
 ---
 
+---
+-- General options
+---
 vim.g.mapleader = ' '
 
 vim.o.termguicolors  = true
@@ -70,7 +73,6 @@ vim.o.shiftwidth     = 8
 vim.o.showtabline    = 1
 
 vim.o.ttimeout       = true
-vim.o.timeout        = true
 
 vim.o.incsearch      = true
 vim.o.inccommand     = 'nosplit'
@@ -111,10 +113,15 @@ vim.o.breakat        = [[\ \	;:,!?]]
 vim.o.wildignore     = [[*.pyc,node_modules,.git]]
 vim.o.formatoptions  = 'tcraj'
 
--- plugins
+---
+-- Plugin related options
+---
 vim.g.matchup_matchparen_offset = { method = 'popup' }
 
 vim.o.foldcolumn                = '1'
 vim.o.foldlevel                 = 99
 vim.o.foldlevelstart            = 99
 vim.o.foldenable                = true
+
+vim.o.timeout                   = true
+vim.o.timeoutlen                = 300

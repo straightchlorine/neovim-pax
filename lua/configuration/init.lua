@@ -61,4 +61,8 @@ local configuration = {}
     require('configuration.gitsigns')
   end
 
+  configuration.key = function ()
+    require('configuration.key')
+  end
+
 return configuration
