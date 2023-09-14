@@ -101,8 +101,8 @@ local configuration = {}
     require('configuration.gpt')
   end
 
-  configuration.gpt = function ()
-    require('configuration.gpt')
+  configuration.copilot = function ()
+    require('configuration.copilot')
   end
 
 return configuration

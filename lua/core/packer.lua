@@ -34,7 +34,6 @@ return require('packer').startup(function (use)
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
   use { 'petertriho/cmp-git' }
-  use { 'lukas-reineke/cmp-under-comparator' }
   use { 'hrsh7th/nvim-cmp',
     config = config.cmp
   }
@@ -52,10 +51,6 @@ return require('packer').startup(function (use)
   use { 'sakhnik/nvim-gdb' }
 
   use { 'mfussenegger/nvim-dap' }
-
-  use { 'rcarriga/nvim-notify',
-    config = config.notify
-  }
 
   use { 'nvim-tree/nvim-tree.lua',
     requires = 'nvim-tree/nvim-web-devicons',
@@ -78,6 +73,10 @@ return require('packer').startup(function (use)
   use { 'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
     config = config.telescope
+  }
+
+  use { 'rcarriga/nvim-notify',
+    config = config.notify
   }
 
   use { 'nvim-lua/popup.nvim' }
@@ -176,6 +175,12 @@ return require('packer').startup(function (use)
 
   use { 'jackMort/ChatGPT.nvim',
     config = config.gpt
+  }
+
+  use { 'zbirenbaum/copilot.lua',
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = config.copilot
   }
 
 end)
