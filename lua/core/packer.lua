@@ -89,6 +89,11 @@ return require('packer').startup(function (use)
     config = config.blankline
   }
 
+  use {
+    'numToStr/Comment.nvim',
+    config = config.comment
+  }
+
   use { 'tpope/vim-obsession' }
 
   use { 'tpope/vim-eunuch' }
