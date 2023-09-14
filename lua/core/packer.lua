@@ -44,6 +44,8 @@ return require('packer').startup(function (use)
     config = config.cmp_ultisnips
   }
 
+  use { 'sakhnik/nvim-gdb' }
+
   use { 'rcarriga/nvim-notify',
     config = config.notify
   }
