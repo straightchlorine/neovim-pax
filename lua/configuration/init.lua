@@ -85,4 +85,8 @@ local configuration = {}
     require('configuration.colorizer')
   end
 
+  configuration.shade = function ()
+    require('configuration.shade')
+  end
+
 return configuration

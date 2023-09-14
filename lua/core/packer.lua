@@ -155,4 +155,8 @@ return require('packer').startup(function (use)
     config = config.colorizer
   }
 
+  use { 'sunjon/shade.nvim',
+    config = config.shade
+  }
+
 end)
