@@ -167,4 +167,8 @@ return require('packer').startup(function (use)
 
   use { 'folke/twilight.nvim' }
 
+  use { 'uga-rosa/ccc.nvim',
+    config = config.ccc
+  }
+
 end)
