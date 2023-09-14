@@ -46,6 +46,8 @@ return require('packer').startup(function (use)
 
   use { 'sakhnik/nvim-gdb' }
 
+  use { 'mfussenegger/nvim-dap' }
+
   use { 'rcarriga/nvim-notify',
     config = config.notify
   }
