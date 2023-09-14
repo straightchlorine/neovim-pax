@@ -69,4 +69,8 @@ local configuration = {}
     require('configuration.comment')
   end
 
+  configuration.alpha = function ()
+    require('configuration.alpha')
+  end
+
 return configuration

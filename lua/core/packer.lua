@@ -139,4 +139,8 @@ return require('packer').startup(function (use)
  
   use { 'lervag/vimtex' }
 
+  use { 'goolord/alpha-nvim',
+    config = config.alpha
+  }
+
 end)
