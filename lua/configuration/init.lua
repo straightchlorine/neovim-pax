@@ -89,4 +89,8 @@ local configuration = {}
     require('configuration.shade')
   end
 
+  configuration.range_highlight = function ()
+    require('configuration.range_highlight')
+  end
+
 return configuration

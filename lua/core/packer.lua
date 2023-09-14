@@ -159,4 +159,10 @@ return require('packer').startup(function (use)
     config = config.shade
   }
 
+  use { 'winston0410/cmd-parser.nvim' }
+
+  use { 'winston0410/range-highlight.nvim',
+    config = config.range_highlight
+  }
+
 end)
