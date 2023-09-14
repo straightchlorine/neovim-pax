@@ -143,4 +143,8 @@ return require('packer').startup(function (use)
     config = config.alpha
   }
 
+  use { 'rrethy/vim-illuminate',
+    config = config.illuminate
+  }
+
 end)

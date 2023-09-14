@@ -73,4 +73,8 @@ local configuration = {}
     require('configuration.alpha')
   end
 
+  configuration.illuminate = function ()
+    require('configuration.illuminate')
+  end
+
 return configuration
