@@ -147,4 +147,8 @@ return require('packer').startup(function (use)
     config = config.illuminate
   }
 
+  use { 'kevinhwang91/nvim-hlslens',
+    config = config.hlslens
+  }
+
 end)

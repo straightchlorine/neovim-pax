@@ -77,4 +77,8 @@ local configuration = {}
     require('configuration.illuminate')
   end
 
+  configuration.hlslens = function ()
+    require('configuration.hlslens')
+  end
+
 return configuration
