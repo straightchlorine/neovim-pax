@@ -64,6 +64,8 @@ return require('packer').startup(function (use)
 
   use { 'skywind3000/asyncrun.vim' }
 
+  use { 'kevinhwang91/promise-async' }
+
   use { 'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
     config = config.telescope
@@ -72,6 +74,8 @@ return require('packer').startup(function (use)
   use { 'nvim-lua/popup.nvim' }
 
   use { 'sudormrfbin/cheatsheet.nvim' }
+
+  use { 'kevinhwang91/nvim-ufo' }
 
   use { 'lukas-reineke/indent-blankline.nvim',
     config = config.blankline

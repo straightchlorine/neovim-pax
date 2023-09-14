@@ -87,9 +87,6 @@ vim.o.wrap           = true
 vim.o.wrapscan       = true
 vim.o.whichwrap      = 'h,l,<,>,[,],~'
 
-vim.o.foldenable     = true
-vim.o.foldlevelstart = 0
-
 vim.o.startofline    = false
 vim.o.relativenumber = true
 vim.o.number         = true
@@ -116,3 +113,8 @@ vim.o.formatoptions  = 'tcraj'
 
 -- plugins
 vim.g.matchup_matchparen_offset = { method = 'popup' }
+
+vim.o.foldcolumn                = '1'
+vim.o.foldlevel                 = 99
+vim.o.foldlevelstart            = 99
+vim.o.foldenable                = true
