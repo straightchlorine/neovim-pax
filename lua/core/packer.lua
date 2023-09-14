@@ -165,4 +165,6 @@ return require('packer').startup(function (use)
     config = config.range_highlight
   }
 
+  use { 'folke/twilight.nvim' }
+
 end)
