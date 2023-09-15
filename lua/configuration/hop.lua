@@ -1,4 +1,5 @@
-local hop = require'hop'.setup {
+local hop = require('hop')
+hop.setup {
   keys = 'etovxqpdygfblzhckisuran'
 }
 
