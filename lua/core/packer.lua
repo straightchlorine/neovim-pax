@@ -38,7 +38,7 @@ return require('packer').startup(function (use)
     config = config.cmp
   }
 
-  use { 'SirVer/ultiships' }
+  use { 'SirVer/ultisnips' }
 
   use { 'quangnguyen30192/cmp-nvim-ultisnips',
     config = config.cmp_ultisnips
@@ -47,10 +47,6 @@ return require('packer').startup(function (use)
   use { 'folke/which-key.nvim',
     config = config.key
   }
-
-  use { 'sakhnik/nvim-gdb' }
-
-  use { 'mfussenegger/nvim-dap' }
 
   use { 'nvim-tree/nvim-tree.lua',
     requires = 'nvim-tree/nvim-web-devicons',
@@ -134,8 +130,8 @@ return require('packer').startup(function (use)
   use { 'lewis6991/gitsigns.nvim',
     config = config.gitsigns
   }
-  
-  use { 'andymass/diffview.nvim' }
+
+  use { 'sindrets/diffview.nvim' }
  
   use { 'lervag/vimtex' }
 
@@ -182,5 +178,15 @@ return require('packer').startup(function (use)
     event = "InsertEnter",
     config = config.copilot
   }
+
+  use { 'mfussenegger/nvim-jdtls' }
+
+  use { 'scalameta/nvim-metals' }
+
+  use { 'sakhnik/nvim-gdb' }
+
+  use { 'mfussenegger/nvim-dap' }
+
+  use { 'rockerBOO/boo-colorscheme-nvim' }
 
 end)
