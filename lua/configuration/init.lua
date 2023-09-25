@@ -21,6 +21,10 @@ local configuration = {}
     require('configuration.cmp_ultisnips')
   end
 
+  configuration.ultisnips = function ()
+    require('configuration.ultisnips')
+  end
+
   configuration.notify = function ()
     require('configuration.notify')
   end
