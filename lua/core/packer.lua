@@ -191,4 +191,8 @@ return require('packer').startup(function (use)
 
   use { 'rockerBOO/boo-colorscheme-nvim' }
 
+  use { 'folke/tokyonight.nvim' }
+
+  use { 'navarasu/onedark.nvim' }
+
 end)
