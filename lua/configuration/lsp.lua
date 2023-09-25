@@ -3,10 +3,9 @@
 ---
 
 local lspconfig = require('lspconfig')
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- adjustment for nvim-ufo
+-- Adjustment to the capabilities for nvim-ufo
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true
@@ -15,6 +14,51 @@ capabilities.textDocument.foldingRange = {
 ---
 -- Language servers
 ---
+
+local language_servers = {
+  'arduino_language_server',
+  'asm_lsp',
+  'awk_ls',
+  'bashls',
+  'clangd',
+  'cmake',
+  'ghdl_ls',
+  'gopls',
+  'kotlin_language_server',
+  'marksman',
+  'texlab',
+  'please',
+  'pyright',
+  'rust_analyzer',
+  'sqlls',
+  'verible',
+  'vimls'
+}
+
+for _, ls in ipairs(language_servers) do
+  lspconfig[ls].setup({
+    capabilities = capabilities
+  })
+end
+
+-- Enabling snippet support for cssls
+local cssls_capabilities = capabilities
+cssls_capabilities.textDocument.completion.snippetSupport = true
+
+lspconfig.cssls.setup {
+  capabilities = cssls_capabilities
+}
+
+lspconfig.gradle_ls.setup {
+  capabilities = capabilities,
+  cmd = { os.getenv('GRADLE_LANGUAGE_SERVER') },
+}
+
+lspconfig.groovyls.setup{
+  capabilities = capabilities,
+  cmd = { 'java', '-jar', os.getenv('GROOVY_LANGUAGE_SERVER') },
+}
+
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
   on_init = function(client)
@@ -34,13 +78,24 @@ lspconfig.lua_ls.setup {
   end
 }
 
---- Global mappings
+-- Configuration for metals
+local metals_config = require('metals').bare_config()
+metals_config.settings = {
+  showImplicitArguments = true,
+}
+metals_config.capabilities = capabilities
+
+---
+-- Global mappings
+---
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
---- Buffer local mappings
+---
+-- Local mappings
+---
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
