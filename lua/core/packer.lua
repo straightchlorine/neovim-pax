@@ -157,10 +157,6 @@ return require('packer').startup(function (use)
     config = config.colorizer
   }
 
-  use { 'sunjon/shade.nvim',
-    config = config.shade
-  }
-
   use { 'winston0410/cmd-parser.nvim' }
 
   use { 'winston0410/range-highlight.nvim',
