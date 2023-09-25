@@ -11,14 +11,14 @@ inoremap <A-h> <C-\><C-N><C-w>h
 inoremap <A-j> <C-\><C-N><C-w>j
 inoremap <A-k> <C-\><C-N><C-w>k
 inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>
+nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
 " splitting
-nnoremap <leader>vs <cmd>vsplit<cr>
-nnoremap <leader>hs <cmd>split<cr>
+nnoremap <leader>vv <cmd>vsplit<cr>
+nnoremap <leader>hh <cmd>split<cr>
 
 " terminal mode
 tnoremap <Esc> <C-\><C-n>
