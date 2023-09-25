@@ -1,15 +1,12 @@
---- options.lua
--- Contains all the options.
----
+--- options.lua - Contains all the options. --
 
 ---
 -- General options
 ---
-vim.g.mapleader = ' '
+vim.g.mapleader      = ' '
 
 vim.o.termguicolors  = true
 vim.o.redrawtime     = 1500
-vim.o.background     = 'dark'
 
 vim.o.backup         = false
 vim.o.writebackup    = false
@@ -24,7 +21,7 @@ vim.o.switchbuf      = 'useopen'
 
 vim.o.clipboard      = 'unnamedplus'
 
-vim.o.undodir        = '~/.local/share/nvim/undo_history'
+vim.o.undodir        = os.getenv('HOME') .. '/.local/share/nvim/undo_history'
 vim.o.undofile       = true
 
 vim.o.virtualedit    = 'block'
@@ -69,8 +66,10 @@ vim.o.expandtab      = true
 vim.o.smartcase      = true
 vim.o.infercase      = true
 vim.o.smarttab       = true
-vim.o.shiftwidth     = 8
 vim.o.showtabline    = 1
+
+vim.o.shiftwidth     = 2
+vim.o.tabstop        = 2
 
 vim.o.ttimeout       = true
 
@@ -104,24 +103,49 @@ vim.o.mousescroll    = 'ver:4,hor:6'
 vim.o.conceallevel   = 1
 vim.o.concealcursor  = 'niv'
 
-vim.o.list           = true
-vim.o.listchars      = 'eol:↴,space:⋅'
 vim.o.shortmess      = 'filmwaxstA'
 
 vim.o.linebreak      = true
 vim.o.breakat        = [[\ \	;:,!?]]
-vim.o.wildignore     = [[*.pyc,node_modules,.git]]
-vim.o.formatoptions  = 'tcraj'
+
+vim.opt.wildignore:append { '*.pyc', 'node_modules','.git' }
+vim.opt.formatoptions:append { 'tcraj' }
 
 ---
 -- Plugin related options
 ---
+
 vim.g.matchup_matchparen_offset = { method = 'popup' }
 
-vim.o.foldcolumn                = '1'
-vim.o.foldlevel                 = 99
-vim.o.foldlevelstart            = 99
-vim.o.foldenable                = true
+vim.o.list                       = true
+vim.opt.listchars:append 'space:⋅'
+vim.opt.listchars:append 'eol:↴'
 
-vim.o.timeout                   = true
-vim.o.timeoutlen                = 300
+vim.o.foldcolumn                 = '1'
+vim.o.foldlevel                  = 99
+vim.o.foldlevelstart             = 99
+vim.o.foldenable                 = true
+
+vim.o.timeout                    = true
+vim.o.timeoutlen                 = 300
+
+vim.cmd([[
+  let g:vimtex_compiler_latexmk = {
+      \ 'build_dir' : '',
+      \ 'callback' : 1,
+      \ 'continuous' : 1,
+      \ 'executable' : 'latexmk',
+      \ 'hooks' : [],
+      \ 'options' : [
+      \   '-shell-escape',
+      \   '-verbose',
+      \   '-file-line-error',
+      \   '-synctex=1',
+      \   '-interaction=nonstopmode',
+      \ ],
+      \}
+]])
+
+vim.g.vimtex_view_general_viewer = 'zathura'
+vim.g.vimtex_complete_enabled    = 1
+vim.g.vimtex_comlete_bib         = 'simple'
