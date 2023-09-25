@@ -38,7 +38,13 @@ return require('packer').startup(function (use)
     config = config.cmp
   }
 
-  use { 'SirVer/ultisnips' }
+  use { 'SirVer/ultisnips',
+    requires = {
+      'honza/vim-snippets',
+      rtp = '.'
+    },
+    config = config.ultisnips
+  }
 
   use { 'quangnguyen30192/cmp-nvim-ultisnips',
     config = config.cmp_ultisnips
