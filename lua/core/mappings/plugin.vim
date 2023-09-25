@@ -13,8 +13,8 @@ nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " bufferline
-nnoremap <leader>[c <cmd>BufferlineCycleNext<cr>
-nnoremap <leader>]c <cmd>BufferlineCyclePrev<cr>
+nnoremap <leader>[b <cmd>BufferLineCycleNext<cr>
+nnoremap <leader>]b <cmd>BufferLineCyclePrev<cr>
 
 " vim-oscyank
 nmap <leader>c <Plug>OSCYankOperator
