@@ -88,7 +88,9 @@ return require('packer').startup(function (use)
   use { 'kevinhwang91/nvim-ufo' }
 
   use { 'lukas-reineke/indent-blankline.nvim',
-    config = config.blankline
+    config = config.ibl,
+    main = 'ibl',
+    opts = {}
   }
 
   use {
