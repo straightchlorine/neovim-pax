@@ -49,8 +49,8 @@ local configuration = {}
     require('configuration.telescope')
   end
 
-  configuration.blankline = function ()
-    require('configuration.blankline')
+  configuration.ibl = function ()
+    require('configuration.ibl')
   end
 
   configuration.hop = function ()
