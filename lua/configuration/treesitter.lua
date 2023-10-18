@@ -29,6 +29,7 @@ require'nvim-treesitter.configs'.setup {
     'markdown_inline',
     'ninja',
     'python',
+    'r',
     'rust',
     'ruby',
     'sql',
