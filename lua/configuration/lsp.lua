@@ -30,6 +30,7 @@ local language_servers = {
   'please',
   'pyright',
   'rust_analyzer',
+  'r_language_server',
   'sqlls',
   'verible',
   'vimls'
