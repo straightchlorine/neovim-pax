@@ -3,8 +3,8 @@
 ""
 
 " nvim-tree
-nnoremap <leader>nt <cmd>NvimTreeToggle<cr>
-nnoremap <leader>nf <cmd>NvimTreeFindFile<cr>
+nnoremap <leader>ntt <cmd>NvimTreeToggle<cr>
+nnoremap <leader>ntf <cmd>NvimTreeFindFile<cr>
 
 " telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -15,6 +15,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 " bufferline
 nnoremap <leader>[b <cmd>BufferLineCycleNext<cr>
 nnoremap <leader>]b <cmd>BufferLineCyclePrev<cr>
+nnoremap <leader>bD <cmd>:BufferLinePickClose<CR>
+nnoremap <leader>bP <cmd>:BufferLinePick<CR>
 
 " vim-oscyank
 nmap <leader>c <Plug>OSCYankOperator
