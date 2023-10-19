@@ -8,7 +8,8 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Adjustment to the capabilities for nvim-ufo
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
-  lineFoldingOnly = true
+  lineFoldingOnly = true,
+  documentationFormat = { 'markdown', 'plaintext', 'html' }
 }
 
 ---
@@ -65,12 +66,29 @@ lspconfig.lua_ls.setup {
   on_init = function(client)
     local path = client.workspace_folders[1].name
     if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
-      client.config.settings = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-        runtime = {
-          version = 'LuaJIT'
-        },
-        workspace = {
-          library = { vim.env.VIMRUNTIME }
+      client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
+        Lua = {
+          runtime = {
+            version = 'LuaJIT'
+          },
+          diagnostics = {
+            globals = {
+              'vim',
+              'awesome'
+            }
+          },
+          workspace = {
+            library = {
+              [vim.fn.expand '$VIMRUNTIME/lua'] = true,
+              [vim.fn.expand '$VIMRUNTIME/lua/vim/lsp'] = true,
+              [vim.fn.expand '/usr/share/awesome'] = true,
+              [vim.fn.expand '/usr/share/lua/5.4/lgi'] = true,
+              [vim.fn.expand '/usr/share/lua/5.4/lgi/override'] = true,
+              [vim.fn.expand '/usr/share/lua/5.4/luarocks'] = true
+            }
+          },
+          maxPreload = 100000,
+          preloadFileSize = 10000,
         }
       })
       client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
