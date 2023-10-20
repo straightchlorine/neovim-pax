@@ -26,6 +26,7 @@ return require('packer').startup(function (use)
     config = config.treesitter
   }
 
+  use { 'onsails/lspkind.nvim' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'neovim/nvim-lspconfig',
     config = config.lsp
