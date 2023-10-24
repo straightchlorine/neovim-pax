@@ -26,7 +26,12 @@ return require('packer').startup(function (use)
     config = config.treesitter
   }
 
-  use { 'onsails/lspkind.nvim' }
+  use { 'zbirenbaum/copilot.lua',
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = config.copilot
+  }
+
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'neovim/nvim-lspconfig',
     config = config.lsp
@@ -34,12 +39,21 @@ return require('packer').startup(function (use)
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
+
+  use { 'onsails/lspkind.nvim' }
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
   use { 'petertriho/cmp-git' }
   use { 'jalvesaq/cmp-nvim-r' }
-  use { 'zbirenbaum/copilot-cmp' }
+  use { 'zbirenbaum/copilot-cmp',
+    config = function ()
+      require('copilot_cmp').setup()
+    end
+  }
+
   use { 'hrsh7th/nvim-cmp',
     config = config.cmp
   }
+
 
   use { 'SirVer/ultisnips',
     requires = {
@@ -180,11 +194,6 @@ return require('packer').startup(function (use)
     config = config.gpt
   }
 
-  use { 'zbirenbaum/copilot.lua',
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = config.copilot
-  }
 
   use { 'mfussenegger/nvim-jdtls' }
 
