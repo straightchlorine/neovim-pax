@@ -125,7 +125,20 @@ cmp.setup({
       end
     }),
   },
+  formatting = {
+      format = require('lspkind').cmp_format({
+        mode = 'symbol_text', -- show only symbol annotations
+        maxwidth = 50,
+        preset = 'codicons',
+        ellipsis_char = '...',
+        symbol_map = { Copilot = "" },
+        before = function (entry, vim_item)
+          return vim_item
+        end
+      })
+    },
   sources = cmp.config.sources({
+    { name = "copilot"},
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
     { name = 'ultisnips' },
