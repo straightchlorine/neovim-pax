@@ -109,4 +109,8 @@ local configuration = {}
     require('configuration.copilot')
   end
 
+  configuration.flutter_tools = function ()
+    require('configuration.flutter_tools')
+  end
+
 return configuration
