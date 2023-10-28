@@ -54,7 +54,6 @@ return require('packer').startup(function (use)
     config = config.cmp
   }
 
-
   use { 'SirVer/ultisnips',
     requires = {
       'honza/vim-snippets',
@@ -157,7 +156,7 @@ return require('packer').startup(function (use)
   }
 
   use { 'sindrets/diffview.nvim' }
- 
+
   use { 'lervag/vimtex' }
 
   use { 'goolord/alpha-nvim',
@@ -194,7 +193,6 @@ return require('packer').startup(function (use)
     config = config.gpt
   }
 
-
   use { 'mfussenegger/nvim-jdtls' }
 
   use { 'scalameta/nvim-metals' }
@@ -210,4 +208,10 @@ return require('packer').startup(function (use)
   use { 'navarasu/onedark.nvim' }
 
   use { 'jalvesaq/Nvim-R' }
+
+  use { 'dart-lang/dart-vim-plugin' }
+
+  use { 'akinsho/flutter-tools.nvim',
+    config = config.flutter_tools
+  }
 end)
