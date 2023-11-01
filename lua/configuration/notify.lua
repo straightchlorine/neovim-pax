@@ -1,12 +1,12 @@
 --- notify.lua
--- Configuration for nvim-notify plugin
+-- Configuration for nvim-notify plugin.
 ---
 
 local notification = require('notify')
 
 notification.setup {
   background_colour = 'NotifyBackground',
-  fps = 60,
+  fps = 165,
   icons = {
     DEBUG = '',
     ERROR = '',
@@ -17,9 +17,11 @@ notification.setup {
   level = 2,
   minimum_width = 50,
   render = 'default',
-  stages = 'fade_in_slide_out',
+  stages = 'slide',
   timeout = 5000,
-  top_down = true
+  top_down = false
 }
 
 vim.notify = notification
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
