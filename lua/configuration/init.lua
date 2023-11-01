@@ -18,7 +18,7 @@ local configuration = {}
   end
 
   configuration.cmp_ultisnips = function ()
-    require('configuration.cmp_ultisnips')
+    require('configuration.cmp-ultisnips')
   end
 
   configuration.ultisnips = function ()
