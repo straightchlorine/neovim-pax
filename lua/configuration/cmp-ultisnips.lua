@@ -9,3 +9,5 @@ require('cmp_nvim_ultisnips').setup {
     return snippet.description .. '\n\n' .. snippet.value
   end
 }
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
