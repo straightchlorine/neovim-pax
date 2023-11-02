@@ -56,3 +56,5 @@ config['init_options'] = {
 }
 
 require('jdtls').start_or_attach(config)
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
