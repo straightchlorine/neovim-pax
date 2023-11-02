@@ -25,3 +25,5 @@ vim.api.nvim_set_keymap('n', 'N',
 vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
 
 require('core.handles')
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
