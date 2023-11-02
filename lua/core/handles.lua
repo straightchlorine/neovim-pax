@@ -68,3 +68,5 @@ vim.api.nvim_create_user_command(
   trim_space,
   { nargs = '?', range = '%', addr = 'lines', preview = trim_space_preview }
 )
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
