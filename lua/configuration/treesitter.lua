@@ -1,7 +1,8 @@
 --- treesitter.lua
 -- Configuration for nvim-treesitter plugin.
+--
 
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = {
     'c',
     'cpp',
@@ -46,3 +47,5 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
