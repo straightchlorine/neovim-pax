@@ -94,7 +94,7 @@ local configuration = {}
   end
 
   configuration.range_highlight = function ()
-    require('configuration.range_highlight')
+    require('configuration.range-highlight')
   end
 
   configuration.ccc = function ()
