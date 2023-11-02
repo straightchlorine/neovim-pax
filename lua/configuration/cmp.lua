@@ -15,8 +15,8 @@ cmp.setup({
     end,
   },
   window = {
-    -- completion = cmp.config.window.bordered(),
-    -- documentation = cmp.config.window.bordered(),
+    --completion = cmp.config.window.bordered(),
+    --documentation = cmp.config.window.bordered(),
   },
   mapping = {
 
@@ -125,18 +125,20 @@ cmp.setup({
       end
     }),
   },
+
   formatting = {
-      format = require('lspkind').cmp_format({
-        mode = 'symbol_text', -- show only symbol annotations
-        maxwidth = 50,
-        preset = 'codicons',
-        ellipsis_char = '...',
-        symbol_map = { Copilot = "" },
-        before = function (entry, vim_item)
-          return vim_item
-        end
-      })
-    },
+    format = require('lspkind').cmp_format({
+      mode = 'symbol_text', -- show only symbol annotations
+      maxwidth = 50,
+      preset = 'codicons',
+      ellipsis_char = '...',
+      symbol_map = { Copilot = "" },
+      before = function (entry, vim_item)
+        return vim_item
+      end
+    })
+  },
+
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
@@ -147,6 +149,7 @@ cmp.setup({
     { name = 'path' },
     { name = 'copilot'},
   }),
+
   sorting = {
     comparators = {
       cmp.config.compare.exact,
@@ -183,3 +186,5 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
