@@ -22,6 +22,3 @@ nnoremap <leader>hh <cmd>split<cr>
 
 " terminal mode
 tnoremap <Esc> <C-\><C-n>
-
-" searching
-nnoremap <leader><Esc> <cmd>nohlsearch<cr>
