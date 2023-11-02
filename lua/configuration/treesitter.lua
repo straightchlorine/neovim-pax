@@ -32,7 +32,6 @@ require'nvim-treesitter.configs'.setup {
     'r',
     'rust',
     'ruby',
-    'sql',
     'toml',
     'verilog',
     'vim',
