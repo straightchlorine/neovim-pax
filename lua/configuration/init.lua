@@ -110,7 +110,7 @@ local configuration = {}
   end
 
   configuration.flutter_tools = function ()
-    require('configuration.flutter_tools')
+    require('configuration.flutter-tools')
   end
 
 return configuration
