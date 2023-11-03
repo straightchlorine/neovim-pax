@@ -6,64 +6,25 @@
 local config = require('configuration')
 
 return require('packer').startup(function (use)
+
   use { 'wbthomason/packer.nvim'}
+
+  use { 'skywind3000/asyncrun.vim' }
+
+  use { 'kevinhwang91/promise-async' }
 
   use { 'nvim-lua/plenary.nvim' }
 
-  use {'kevinhwang91/nvim-bqf',
-    ft = 'qf',
-    config = config.bqf
-  }
-
-  use {'junegunn/fzf',
-    run = function()
-      vim.fn['fzf#install']()
-    end
-  }
+  use { 'MunifTanjim/nui.nvim' }
 
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = config.treesitter
   }
 
-  use { 'zbirenbaum/copilot.lua',
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = config.copilot
-  }
-
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'neovim/nvim-lspconfig',
-    config = config.lsp
-  }
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-path' }
-  use { 'hrsh7th/cmp-cmdline' }
-
-  use { 'onsails/lspkind.nvim' }
-  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
-  use { 'petertriho/cmp-git' }
-  use { 'jalvesaq/cmp-nvim-r' }
-  use { 'zbirenbaum/copilot-cmp',
-    config = function ()
-      require('copilot_cmp').setup()
-    end
-  }
-
-  use { 'hrsh7th/nvim-cmp',
-    config = config.cmp
-  }
-
-  use { 'SirVer/ultisnips',
-    requires = {
-      'honza/vim-snippets',
-      rtp = '.'
-    },
-    config = config.ultisnips
-  }
-
-  use { 'quangnguyen30192/cmp-nvim-ultisnips',
-    config = config.cmp_ultisnips
+  use {'kevinhwang91/nvim-bqf',
+    ft = 'qf',
+    config = config.bqf
   }
 
   use { 'folke/which-key.nvim',
@@ -84,15 +45,6 @@ return require('packer').startup(function (use)
     config = config.bufferline
   }
 
-  use { 'skywind3000/asyncrun.vim' }
-
-  use { 'kevinhwang91/promise-async' }
-
-  use { 'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
-    config = config.telescope
-  }
-
   use { 'rcarriga/nvim-notify',
     config = config.notify
   }
@@ -100,8 +52,6 @@ return require('packer').startup(function (use)
   use { 'nvim-lua/popup.nvim' }
 
   use { 'sudormrfbin/cheatsheet.nvim' }
-
-  use { 'kevinhwang91/nvim-ufo' }
 
   use { 'lukas-reineke/indent-blankline.nvim',
     config = config.ibl,
@@ -113,6 +63,109 @@ return require('packer').startup(function (use)
     'numToStr/Comment.nvim',
     config = config.comment
   }
+
+  use { 'sakhnik/nvim-gdb' }
+
+  use { 'mfussenegger/nvim-dap' }
+
+  use {'junegunn/fzf',
+    run = ':call fzf#install()'
+  }
+  use {'junegunn/fzf.vim',}
+
+  use { 'nvim-telescope/telescope-dap.nvim' }
+
+  use { 'nvim-telescope/telescope.nvim',
+    tag = '0.1.2',
+    config = config.telescope
+  }
+
+  use { 'onsails/lspkind.nvim' }
+
+  use { 'SirVer/ultisnips',
+    requires = {
+      'honza/vim-snippets',
+      rtp = '.'
+    },
+    config = config.ultisnips
+  }
+
+  use { 'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    event = 'InsertEnter',
+    config = config.copilot
+  }
+
+  use { 'jackMort/ChatGPT.nvim',
+    config = config.gpt
+  }
+
+  use { 'hrsh7th/cmp-nvim-lsp' }
+
+  use { 'neovim/nvim-lspconfig',
+    config = config.lsp
+  }
+
+  use { 'hrsh7th/cmp-buffer' }
+
+  use { 'hrsh7th/cmp-path' }
+
+  use { 'hrsh7th/cmp-cmdline' }
+
+  use { 'quangnguyen30192/cmp-nvim-ultisnips',
+    config = config.cmp_ultisnips
+  }
+
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
+
+  use { 'petertriho/cmp-git' }
+
+  use { 'jalvesaq/cmp-nvim-r' }
+
+  use { 'zbirenbaum/copilot-cmp',
+    config = function ()
+      require('copilot_cmp').setup()
+    end
+  }
+
+  use { 'hrsh7th/nvim-cmp',
+    config = config.cmp
+  }
+
+  use { 'lervag/vimtex' }
+
+  use { 'mfussenegger/nvim-jdtls' }
+
+  use { 'scalameta/nvim-metals' }
+
+  use { 'jalvesaq/Nvim-R' }
+
+  use { 'dart-lang/dart-vim-plugin' }
+
+  use { 'akinsho/flutter-tools.nvim',
+    config = config.flutter_tools
+  }
+
+  use { 'iamcco/markdown-preview.nvim',
+    run = 'cd app && npm install',
+    setup = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
+  }
+
+  use { 'uga-rosa/ccc.nvim',
+    config = config.ccc
+  }
+
+
+  use { 'lewis6991/gitsigns.nvim',
+    config = config.gitsigns
+  }
+
+  use { 'sindrets/diffview.nvim' }
+
+  use { 'kevinhwang91/nvim-ufo' }
 
   use { 'tpope/vim-obsession' }
 
@@ -151,18 +204,6 @@ return require('packer').startup(function (use)
     cmd = { 'Flog' }
   }
 
-  use { 'lewis6991/gitsigns.nvim',
-    config = config.gitsigns
-  }
-
-  use { 'sindrets/diffview.nvim' }
-
-  use { 'lervag/vimtex' }
-
-  use { 'goolord/alpha-nvim',
-    config = config.alpha
-  }
-
   use { 'rrethy/vim-illuminate',
     config = config.illuminate
   }
@@ -183,40 +224,16 @@ return require('packer').startup(function (use)
 
   use { 'folke/twilight.nvim' }
 
-  use { 'uga-rosa/ccc.nvim',
-    config = config.ccc
-  }
-
-  use { 'MunifTanjim/nui.nvim' }
-
-  use { 'jackMort/ChatGPT.nvim',
-    config = config.gpt
-  }
-
-  use { 'mfussenegger/nvim-jdtls' }
-
-  use { 'scalameta/nvim-metals' }
-
-  use { 'sakhnik/nvim-gdb' }
-
-  use { 'mfussenegger/nvim-dap' }
-
   use { 'rockerBOO/boo-colorscheme-nvim' }
 
   use { 'folke/tokyonight.nvim' }
 
   use { 'navarasu/onedark.nvim' }
 
-  use { 'jalvesaq/Nvim-R' }
-
-  use { 'dart-lang/dart-vim-plugin' }
-
-  use { 'akinsho/flutter-tools.nvim',
-    config = config.flutter_tools
+  use { 'goolord/alpha-nvim',
+    config = config.alpha
   }
 
-  use { "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, 
-  }
 end)
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
