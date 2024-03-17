@@ -41,7 +41,7 @@
 <a name="about"></a>
 ## About
 
-Pax is a simple and easy to personalise Neovim configuration providing support for wide array of programing.
+Pax is a simple and extensive Neovim configuration.
 
 [![neovim-pax][product-screenshot]](https://example.com)
 [![neovim-pax][product-screenshot-writing]](https://example.com)
@@ -71,16 +71,12 @@ To use the configuration you just need to clone this repository into `~/.config/
 <a name="personalization"></a>
 ### Personalization
 
-Main objective of the project is to make it as easy to mantain and personalise as possible.
-
-That is why every file has a short description in it's first lines, for example: 
-
+Each file has a small comment at the top explaining it's function, it makes it pretty easy to find what needs to be changed.
 ```
 --- lsp.lua
 -- Configuration for nvim-lspconfig.
 ---
 ```
-Thanks to that it is really easy to find what you are looking for using for example `:Telescope live_grep`.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- Roadmap -->
@@ -123,7 +119,7 @@ If that is not what you are looking for, I recommend the following:
 * [NvChad](https://github.com/NvChad/NvChad)
 * [LazyVim](https://github.com/LazyVim/LazyVim)
 
-These configurations are very beatiful, fast and with minimal effort from the user will provide everything 
+These configurations are very beatiful, fast and with minimal effort will provide everything 
 my configuration does and will do it better.
 
 If you do not fancy maintaining your own configuration, I definitely recommend trying them out.
