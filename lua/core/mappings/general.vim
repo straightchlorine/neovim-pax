@@ -22,3 +22,7 @@ nnoremap <leader>hh <cmd>split<cr>
 
 " terminal mode
 tnoremap <Esc> <C-\><C-n>
+
+" simple resizing
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 7/5)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 4/5)<CR>
