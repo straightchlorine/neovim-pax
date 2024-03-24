@@ -23,6 +23,7 @@ local language_servers = {
   'bashls',
   'clangd',
   'cmake',
+  'dockerls',
   'ghdl_ls',
   'gopls',
   'kotlin_language_server',
