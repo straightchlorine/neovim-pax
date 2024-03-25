@@ -21,7 +21,6 @@ local language_servers = {
   'asm_lsp',
   'awk_ls',
   'bashls',
-  'clangd',
   'cmake',
   'dockerls',
   'ghdl_ls',
@@ -104,6 +103,12 @@ metals_config.settings = {
   showImplicitArguments = true,
 }
 metals_config.capabilities = capabilities
+
+-- Configuration for clangd
+lspconfig.clangd.setup {
+  capabilities = capabilities,
+  cmd = { 'clangd', '--background-index', '--offset-encoding=utf-16' },
+}
 
 ---
 -- Global mappings
