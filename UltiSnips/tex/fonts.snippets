@@ -1,0 +1,42 @@
+# fraction
+snippet "(^|[^a-zA-Z])ff" "\frac{}{}" rA
+`!p snip.rv = match.group(1)`\frac{${1:${VISUAL:}}}{$2}$0
+endsnippet
+
+# typewriter font
+snippet tt "\texttt{}"
+\texttt{$1}$0
+endsnippet
+
+# linking url's
+snippet hr "\href{}{} [url]"
+\href{${1:url}}{${2:displayed}}$0
+endsnippet
+
+# generic LaTeX environment
+snippet env "new environment" b
+\begin{$1}
+    $2
+\end{$1}
+$0
+endsnippet
+
+# italics
+snippet tii "\textit{}"
+\textit{${1:${VISUAL:}}}$0
+endsnippet
+
+# bold
+snippet tbb "\textbf{}"
+\textbf{${1:${VISUAL:}}}$0
+endsnippet
+
+# inline math
+snippet "(^|[^a-zA-Z])mm" "Inline LaTeX math" rA
+`!p snip.rv = match.group(1)`\( ${1:${VISUAL:}} \) $0
+endsnippet
+
+# subscript with upright text
+snippet "([\w]|[\}\)\]\|])sd" "Subscript with upright text" rA
+`!p snip.rv = match.group(1)`_{\mathrm{${1:${VISUAL:}}}}$0
+endsnippet

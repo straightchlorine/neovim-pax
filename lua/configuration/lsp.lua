@@ -17,7 +17,6 @@ capabilities.textDocument.foldingRange = {
 ---
 
 local language_servers = {
-  'arduino_language_server',
   'asm_lsp',
   'awk_ls',
   'bashls',
@@ -109,6 +108,21 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
   cmd = { 'clangd', '--background-index', '--offset-encoding=utf-16' },
 }
+
+-- Configuration for arduino_language_server
+--
+local fqbn = "esp8266:esp8266:nodemcuv2"
+lspconfig.arduino_language_server.setup {
+  capabilities = capabilities,
+    cmd = {
+        "arduino-language-server",
+        "-cli-config", "/home/zweiss/.arduino15/arduino-cli.yaml",
+        "-fqbn",
+        fqbn
+    }
+}
+
+lspconfig.ruff.setup{}
 
 ---
 -- Global mappings

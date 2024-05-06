@@ -96,11 +96,17 @@ return require('packer').startup(function (use)
     config = config.copilot
   }
 
-  use { 'jackMort/ChatGPT.nvim',
-    config = config.gpt
-  }
+  -- use { 'jackMort/ChatGPT.nvim',
+  --   config = config.gpt
+  -- }
 
   use { 'hrsh7th/cmp-nvim-lsp' }
+
+use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    config = config.mason
+}
 
   use { 'neovim/nvim-lspconfig',
     config = config.lsp
@@ -230,10 +236,83 @@ return require('packer').startup(function (use)
 
   use { 'navarasu/onedark.nvim' }
 
-  use { 'goolord/alpha-nvim',
-    config = config.alpha
+  -- up for refactor
+  use "rebelot/kanagawa.nvim"
+
+  use { "catppuccin/nvim", as = "catppuccin" }
+
+  use 'jacoborus/tender.vim'
+
+  use { "bluz71/vim-moonfly-colors", as = "moonfly"}
+
+  use { "bluz71/vim-nightfly-colors", as = "nightfly"}
+
+  use {"savq/melange-nvim"}
+
+  use {"mfussenegger/nvim-lint",
+    config = function()
+      require('lint').linters_by_ft = {
+        python = {'ruff'},
+      }
+    end
+  }
+
+  use { "akinsho/toggleterm.nvim",
+    config = function()
+      require("toggleterm").setup({
+      -- open_mapping = "<c-s>",
+      open_mapping = [[<c-\>]],
+      shade_filetypes = {},
+      shade_terminals = true,
+      shading_factor = -20,
+      start_in_insert = true,
+      persist_size = true,
+      direction = 'horizontal',
+      float_opts = {
+        border = 'single',
+        width = 100,
+        height = 100,
+        winblend = 3,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        }
+      }
+      })
+    end
+  }
+
+  use {
+    "stevearc/conform.nvim",
+    config = function ()
+      require("conform").setup({
+        formatters_by_ft = {
+          lua = { "stylua" },
+          -- Conform will run multiple formatters sequentially
+          python = { "isort", "black" },
+          -- Use a sub-list to run only the first available formatter
+          javascript = { { "prettierd", "prettier" } },
+        },
+      })
+    end
+  }
+
+  use {'vim-test/vim-test',
+    config = function()
+      vim.cmd([[
+      let test#strategy = "neovim"
+      let test#neovim#term_position = "vert"
+      ]])
+    end
+  }
+
+  use {'dense-analysis/ale',
+    config = function()
+      -- Configuration goes here.
+      local g = vim.g
+      g.ale_ruby_rubocop_auto_correct_all = 1
+    end
   }
 
 end)
-
 -- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80

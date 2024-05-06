@@ -5,6 +5,16 @@
 
 local configuration = {}
 
+  configuration.mason = function()
+    require('configuration.mason')
+  end
+
+  configuration.conform = function()
+    require('configuration.conform')
+  end
+
+  -- checked
+
   configuration.treesitter = function ()
     require('configuration.treesitter')
   end
