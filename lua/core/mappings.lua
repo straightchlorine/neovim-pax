@@ -9,6 +9,17 @@ keymap.set("i", "jk", "<ESC>", { desc = "exit insert mode with jk" })
 keymap.set("n", "<leader>+", "<C-a>", { desc = "increment number" })
 keymap.set("n", "<leader>-", "<C-x>", { desc = "decrement number" })
 
+-- help opens vertically
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*",
+	callback = function()
+		if vim.bo.filetype == "help" then
+			vim.cmd("wincmd L")
+			vim.cmd("vertical resize 80")
+		end
+	end,
+})
+
 -- splits
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "split window vertically" })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "split window horizontally" })
