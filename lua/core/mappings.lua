@@ -62,8 +62,4 @@ keymap.set("n", "<A-v>", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", { desc = "
 -- picking
 keymap.set("n", "<C-p>", "<Cmd>BufferPick<CR>", { desc = "pick buffer" })
 
--- sorting
-keymap.set("n", "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>", { desc = "Sort by directory" })
-keymap.set("n", "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>", { desc = "Sort by language" })
-
 -- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80

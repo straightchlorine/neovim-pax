@@ -1,8 +1,4 @@
---- options.lua - Contains all the options. --
-
----
--- General options
----
+--- options.lua - Contains all the options.
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -115,9 +111,7 @@ vim.o.breakat = [[\ \	;:,!?]]
 vim.opt.wildignore:append({ "*.pyc", "node_modules", ".git" })
 vim.opt.formatoptions:append({ "tcraj" })
 
----
 -- Plugin related options
----
 
 vim.g.matchup_matchparen_offset = { method = "popup" }
 
