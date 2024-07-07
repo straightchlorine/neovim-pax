@@ -3,4 +3,5 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 	},
+	-- TODO: add proper configuration
 }
