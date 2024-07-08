@@ -1,5 +1,6 @@
 return {
 	"stevearc/vim-arduino",
+	ft = "arduino",
 	config = function()
 		local keymap = vim.keymap
 
