@@ -10,7 +10,7 @@
 
 <div>
   <p align="center">
-    Minimal Neovim configuration you can be at peace with.
+    Rewritten and modernised minimal Neovim configuration you can be at peace with.
     <br />
     <br />
     <a href="https://github.com/straightchlorine/neovim-pax/issues">Report Bug</a>
@@ -41,10 +41,18 @@
 <a name="about"></a>
 ## About
 
-Pax is a simple and extensive Neovim configuration.
+Pax is a very modularised and extensive Neovim configuration, that have been modernised
+and completely rewritten to catch up with new functionalities that previous versions
+were missing out on.
 
 [![neovim-pax][product-screenshot]](https://example.com)
 [![neovim-pax][product-screenshot-writing]](https://example.com)
+
+#### Features
+* packages managed by [lazy.nvim](https://github.com/folke/lazy.nvim);
+* simplified software management provided by [Mason](https://github.com/williamboman/mason.nvim);
+* full debugging support thanks to [nvim-dap](https://github.com/mfussenegger/nvim-dap) and [neotest](https://github.com/nvim-neotest/neotest);
+* a total of 80 plugins aimed to provide support for many technologies and enable a seamless, productive and efficient workflow.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -54,11 +62,7 @@ Pax is a simple and extensive Neovim configuration.
 
 ### Prerequisites
 <a name="prerequisites"></a>
-* Ensure that you have [neovim-nightly](https://github.com/neovim/neovim/tree/nightly) installed.
-* Configuration of language servers can be found in`lua/configuration/lsp.lua` file. In order to utilise their
-functionality, you need to install them on your system. The process for each supported language server
-is extensively covered in [nvim-lspconfig documentation](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md)
-(you can also access it locall via `:h lspconfig-server-configurations`).
+* Ensure that you have [neovim](https://github.com/neovim/neovim) installed.
 
 <a name="installation"></a>
 ### Installation
@@ -68,25 +72,14 @@ To use the configuration you just need to clone this repository into `~/.config/
    git clone https://github.com/straightchlorine/neovim-pax.git ~/.config/nvim
    ```
 
-<a name="personalization"></a>
-### Personalization
+Now it's ready, you can add LSPs as well as other tools using `:MasonInstall <tool>`, so that the configuration fits your needs.
 
-Each file has a small comment at the top explaining it's function, it makes it pretty easy to find what needs to be changed.
-```
---- lsp.lua
--- Configuration for nvim-lspconfig.
----
-```
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- Roadmap -->
-<a name="roadmap"></a>
 ## Roadmap
 
 - [ ] Expand documentation.
-- [ ] Simplify the configuration by further modularization.
-- [ ] Deal with some of the hardcoded variables.
-- [ ] Clear out duplicate mappings.
+- [ ] Simplify the configuration.
+- [x] Deal with some of the hardcoded variables.
+- [x] Clear out duplicate mappings.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -94,7 +87,7 @@ Each file has a small comment at the top explaining it's function, it makes it p
 <a name="contributing"></a>
 ## Contributing
 
-Project is open for suggestions and fixes, which you can propose via issues or pull requests.
+Project is open for suggestions and fixes, which you can propose through issues or pull requests.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -110,19 +103,14 @@ Distributed under the GPL-3.0 License. See `LICENSE.txt` for more information.
 <a name="alternatives"></a>
 ## Alternatives
 
-Project is still in progress and will most likely be for a long time. It also has not been extensively tested,
-thus problems might occur not only because of various plugins and settings, but also due to the dynamic nature 
-of [neovim-nightly](https://github.com/neovim/neovim/tree/nightly) release.
-
-If that is not what you are looking for, I recommend the following:
+Project is still in progress and will most likely be for a long time. Thus, if what you need is stability
+and the very same functionality (possibly much more), following would be recommend:
 
 * [NvChad](https://github.com/NvChad/NvChad)
 * [LazyVim](https://github.com/LazyVim/LazyVim)
 
-These configurations are very beatiful, fast and with minimal effort will provide everything 
-my configuration does and will do it better.
-
-If you do not fancy maintaining your own configuration, I definitely recommend trying them out.
+These configurations are stunning, fast and will provide everything you need -- long term stability as 
+the most up to date functionalities you might want.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -136,5 +124,5 @@ If you do not fancy maintaining your own configuration, I definitely recommend t
 [license-shield]: https://img.shields.io/github/license/straightchlorine/neovim-pax.svg?style=for-the-badge
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 
-[product-screenshot]: img/preview-nvim-dashboard.png
+[product-screenshot]: img/preview-nvim.png
 [product-screenshot-writing]: img/preview-nvim-writing.png
