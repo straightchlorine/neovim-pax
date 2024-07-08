@@ -12,6 +12,7 @@ return {
 			build = "make install_jsregexp",
 		},
 		"saadparwaiz1/cmp_luasnip",
+		"windwp/nvim-autopairs",
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
 		"zbirenbaum/copilot-cmp",
@@ -82,5 +83,9 @@ return {
 				},
 			}),
 		})
+
+		-- adding autopairs
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 	end,
 }
