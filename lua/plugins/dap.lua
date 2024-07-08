@@ -97,12 +97,16 @@ return {
 		"nvim-telescope/telescope-dap.nvim",
 	},
 	config = function()
-		dap_telescope()
-		dap_mappings()
-
-		-- dap-python
+		-- BUG: handle it more elegantly, this throws an error at the start when
+		-- .venv is not activated; that applies when utilising a different language
+		-- should do a proper function, chechking whether the language of the buffer
+		-- is actually python, so that user can see the warnings and errors that
+		-- are serious
 		pcall(function()
 			require("dap-python").setup(os.getenv("VIRTUAL_ENV") .. "/bin/python")
 		end)
+
+		dap_telescope()
+		dap_mappings()
 	end,
 }
