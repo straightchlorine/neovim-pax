@@ -6,11 +6,9 @@ return {
 			formatters_by_ft = {
 				javascript = { { "prettierd", "prettier" } },
 				latex = { "texlab", "latexindent", "bibtex-tidy" },
-				python = { "ruff_format", "flake8" },
+				python = { "ruff_format", "autoflake" },
 				sql = { "sql-formatter" },
 				lua = { "stylua" },
-				cpp = { "cpplint" },
-				c = { "cpplint" },
 				-- TODO: add other languages along with new projects
 			},
 		})
