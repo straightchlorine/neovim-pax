@@ -23,7 +23,7 @@ local function dap_telescope()
 		"<cmd>lua telescope.extensions.dap.variables()<cr>",
 		{ desc = "debug: list variables" }
 	)
-	keymap.set("n", "<leader>df", "<cmd>lua telescope.extensions.dap.frames()<cr>", { desc = "Dap: list frames" })
+	keymap.set("n", "<leader>df", "<cmd>lua telescope.extensions.dap.frames()<cr>", { desc = "debug: list frames" })
 end
 
 --- Set dap and dap-ui mappings
@@ -68,7 +68,7 @@ local function dap_mappings()
 
 	keymap.set("n", "<Leader>dk", function()
 		dapui.eval()
-	end)
+	end, { desc = "debug: ui eval" })
 	dap.listeners.before.attach.dapui_config = function()
 		dapui.open()
 	end
