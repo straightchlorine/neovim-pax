@@ -9,6 +9,8 @@ return {
 				python = { "ruff_format", "autoflake" },
 				sql = { "sql-formatter" },
 				lua = { "stylua" },
+				sh = { "beautysh" },
+				zsh = { "beautysh" },
 				-- TODO: add other languages along with new projects
 			},
 		})
