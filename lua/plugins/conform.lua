@@ -11,6 +11,9 @@ return {
 				lua = { "stylua" },
 				sh = { "beautysh" },
 				zsh = { "beautysh" },
+				cpp = { "clang-format" },
+				c = { "clang-format" },
+				arduino = { "clang-format" },
 				-- TODO: add other languages along with new projects
 			},
 		})
