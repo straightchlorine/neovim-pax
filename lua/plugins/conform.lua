@@ -15,6 +15,7 @@ return {
 				c = { "clang-format" },
 				arduino = { "clang-format" },
 				asm = { "asmfmt" },
+				rust = { "rustfmt" },
 				-- TODO: add other languages along with new projects
 			},
 		})

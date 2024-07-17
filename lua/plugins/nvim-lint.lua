@@ -7,6 +7,16 @@ return {
 			c = { "cpplint" },
 			cpp = { "cpplint" },
 			arduino = { "cpplint" },
+			git = { "gitlint" },
+			lua = { "luacheck" },
+			python = { "flake8" },
+			json = { "jsonlint" },
+			yaml = { "yamllint" },
+			vhdl = { "ghdl" },
+			html = { "tidy" },
+			verilog = { "verilator" },
+			sql = { "sqlfluff" },
+			tex = { "chktex" },
 		}
 
 		vim.api.nvim_create_autocmd({ "BufWritePost" }, {
