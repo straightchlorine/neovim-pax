@@ -95,6 +95,29 @@ return {
 					},
 				})
 			end,
+			["clangd"] = function()
+				lspconfig["clangd"].setup({
+					capabilities = capabilities,
+					cmd = { "clangd", "--background-index" },
+					filetypes = { "c", "cpp", "objc", "objcpp" },
+					root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+					settings = {
+						ccls = {
+							completion = {
+								filterAndSort = false,
+							},
+							index = {
+								blacklist = { "build" },
+								threads = 0,
+							},
+							workspace = {
+								compilationDatabaseDirectory = "build",
+								directory = ".",
+							},
+						},
+					},
+				})
+			end,
 		})
 	end,
 }

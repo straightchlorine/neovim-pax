@@ -15,7 +15,6 @@ return {
 		"windwp/nvim-autopairs",
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
-		"zbirenbaum/copilot-cmp",
 	},
 	config = function()
 		local cmp = require("cmp")
