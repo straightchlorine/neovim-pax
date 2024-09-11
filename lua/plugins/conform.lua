@@ -16,6 +16,8 @@ return {
 				arduino = { "clang-format" },
 				asm = { "asmfmt" },
 				rust = { "rustfmt" },
+				yaml = { "yamlfmt" },
+				xml = { "xmllint" },
 				-- TODO: add other languages along with new projects
 			},
 		})
