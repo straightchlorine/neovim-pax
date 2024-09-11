@@ -18,6 +18,7 @@ return {
 				rust = { "rustfmt" },
 				yaml = { "yamlfmt" },
 				xml = { "xmllint" },
+				java = { "google-java-format" },
 				-- TODO: add other languages along with new projects
 			},
 		})
