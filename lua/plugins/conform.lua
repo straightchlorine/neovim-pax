@@ -4,8 +4,8 @@ return {
 	config = function()
 		require("conform").setup({
 			formatters_by_ft = {
-				javascript = { { "prettierd", "prettier" } },
-				latex = { "texlab", "latexindent", "bibtex-tidy" },
+				javascript = { "prettierd", "prettier" },
+				tex = { "latexindent", "bibtex-tidy" },
 				python = { "ruff_format", "autoflake" },
 				sql = { "sql-formatter" },
 				lua = { "stylua" },
