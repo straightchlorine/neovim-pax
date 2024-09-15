@@ -4,26 +4,16 @@ local function dap_telescope()
 	local keymap = vim.keymap
 
 	telescope.load_extension("dap")
-	keymap.set("n", "<leader>dd", "<cmd>lua telescope.extensions.dap.commands()<cr>", { desc = "debug: commands" })
-	keymap.set(
-		"n",
-		"<leader>dc",
-		"<cmd>lua telescope.extensions.dap.configurations()<cr>",
-		{ desc = "debug: list configs" }
-	)
+	keymap.set("n", "<leader>dd", "<cmd>:Telescope dap commands<cr>", { desc = "debug: commands" })
+	keymap.set("n", "<leader>dc", "<cmd>:Telescope dap configurations<cr>", { desc = "debug: list configs" })
 	keymap.set(
 		"n",
 		"<leader>dl",
-		"<cmd>lua telescope.extensions.dap.list_breakpoints()<cr>",
+		"<cmd>:Telescope extensions dap list_breakpoints<cr>",
 		{ desc = "debug: list breakpoints" }
 	)
-	keymap.set(
-		"n",
-		"<leader>dv",
-		"<cmd>lua telescope.extensions.dap.variables()<cr>",
-		{ desc = "debug: list variables" }
-	)
-	keymap.set("n", "<leader>df", "<cmd>lua telescope.extensions.dap.frames()<cr>", { desc = "debug: list frames" })
+	keymap.set("n", "<leader>dv", "<cmd>:Telescope dap variables<cr>", { desc = "debug: list variables" })
+	keymap.set("n", "<leader>df", "<cmd>:Telescope dap frames<cr>", { desc = "debug: list frames" })
 end
 
 --- Set dap and dap-ui mappings
@@ -55,9 +45,9 @@ local function dap_mappings()
 	keymap.set("n", "<Leader>dr", function()
 		dap.repl.open()
 	end, { desc = "debug: repl" })
-	keymap.set("n", "<Leader>dl", function()
+	keymap.set("n", "<Leader>rr", function()
 		dap.run_last()
-	end, { desc = "debug: run last" })
+	end, { desc = "debug: restart" })
 	keymap.set({ "n", "v" }, "<Leader>dp", function()
 		require("dap.ui.widgets").preview()
 	end, { desc = "debug: preview" })
