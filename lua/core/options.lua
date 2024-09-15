@@ -8,6 +8,7 @@ vim.g.mapleader = " "
 
 vim.o.termguicolors = true
 vim.o.redrawtime = 1500
+vim.o.colorcolumn = "80,100"
 
 vim.o.backup = false
 vim.o.writebackup = false
