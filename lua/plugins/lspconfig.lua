@@ -17,43 +17,43 @@ return {
 			callback = function(ev)
 				local opts = { buffer = ev.buf, silent = true }
 
-				opts.desc = "show references"
-				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts)
+				opts.desc = "lsp: show references"
+				keymap.set("n", "gR", "<cmd>:Telescope lsp_references<CR>", opts)
 
-				opts.desc = "go to declaration"
+				opts.desc = "lsp: go to declaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-				opts.desc = "show definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+				opts.desc = "lsp: show definitions"
+				keymap.set("n", "gd", "<cmd>:Telescope lsp_definitions<CR>", opts)
 
-				opts.desc = "show implementations"
-				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+				opts.desc = "lsp: show implementations"
+				keymap.set("n", "gi", "<cmd>:Telescope lsp_implementations<CR>", opts)
 
-				opts.desc = "show type definitions"
-				keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+				opts.desc = "lsp: show type definitions"
+				keymap.set("n", "gt", "<cmd>:Telescope lsp_type_definitions<CR>", opts)
 
-				opts.desc = "code actions"
+				opts.desc = "lsp: code actions"
 				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
 
-				opts.desc = "rename"
+				opts.desc = "lsp: rename"
 				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
-				opts.desc = "buffer diagnostics"
-				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+				opts.desc = "lsp: buffer diagnostics"
+				keymap.set("n", "<leader>D", "<cmd>:Telescope diagnostics bufnr=0<CR>", opts)
 
-				opts.desc = "inline diagnostics"
+				opts.desc = "lsp: inline diagnostics"
 				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
 
-				opts.desc = "previous diagnostic"
+				opts.desc = "lsp: previous diagnostic"
 				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
-				opts.desc = "next diagnostic"
+				opts.desc = "lsp: next diagnostic"
 				keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
-				opts.desc = "show doc on hover"
+				opts.desc = "lsp: show doc on hover"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
-				opts.desc = "restart lsp"
+				opts.desc = "lsp: restart lsp"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 			end,
 		})
