@@ -7,11 +7,12 @@ return {
 			suite = "basic",
 		}
 
-		vim.keymap.set("n", "<leader>t", "<Cmd>TestNearest<CR>")
-		vim.keymap.set("n", "<leader>ts", "<Cmd>TestNearest<CR>")
-		vim.keymap.set("n", "<leader>T", "<Cmd>TestFile<CR>")
-		vim.keymap.set("n", "<leader>a", "<Cmd>TestSuite<CR>")
-		vim.keymap.set("n", "<leader>l", "<Cmd>TestLast<CR>")
-		vim.keymap.set("n", "<leader>g", "<Cmd>TestVisit<CR>")
+		-- TODO: neotest-vim-test
+
+		-- vim.keymap.set("n", "<leader>t", "<Cmd>TestNearest<CR>", { desc = "vim-test: test nearest" })
+		-- vim.keymap.set("n", "<leader>T", "<Cmd>TestFile<CR>", { desc = "vim-test: test file" })
+		-- vim.keymap.set("n", "<leader>a", "<Cmd>TestSuite<CR>", { desc = "vim-test: test suite" })
+		-- vim.keymap.set("n", "<leader>l", "<Cmd>TestLast<CR>", { desc = "vim-test: test last" })
+		-- vim.keymap.set("n", "<leader>g", "<Cmd>TestVisit<CR>", { desc = "vim-test: test visit" })
 	end,
 }

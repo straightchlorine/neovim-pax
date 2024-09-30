@@ -51,13 +51,13 @@ keymap.set("n", "<A-8>", "<cmd>BufferLineGoToBuffer 8<CR>", { desc = "buffer: go
 keymap.set("n", "<A-9>", "<cmd>BufferLineGoToBuffer 9<CR>", { desc = "buffer: go to buffer 9" })
 
 -- pinning
-keymap.set("n", "<A-p>", "<cmd>BufferLineTogglePin<CR>", { desc = "buffer: pin buffer" })
+keymap.set("n", "<A-t>", "<cmd>BufferLineTogglePin<CR>", { desc = "buffer: pin buffer" })
 
 -- closing
 keymap.set("n", "<A-c>", "<cmd>BufferLinePickClose<CR>", { desc = "buffer: pick buffer to close" })
 keymap.set("n", "<A-v>", "<cmd>BufferLineCloseOthers<CR>", { desc = "buffer: close all but current" })
 
 -- picking
-keymap.set("n", "<C-p>", "<cmd>BufferLinePick<CR>", { desc = "buffer: pick buffer" })
+keymap.set("n", "<A-p>", "<cmd>BufferLinePick<CR>", { desc = "buffer: pick buffer" })
 
 -- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
