@@ -9,7 +9,12 @@ return {
 
 		vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>", { desc = "git: commit" })
 		vim.keymap.set("n", "<leader>gcc", "<cmd>Git commit --amend<cr>", { desc = "git: commit amend" })
-		vim.keymap.set("n", "<leader>gcn", "<cmd>Git commit --amend --no-edit<cr>", { desc = "git: commit amend" })
+		vim.keymap.set(
+			"n",
+			"<leader>gcn",
+			"<cmd>Git commit --amend --no-edit<cr>",
+			{ desc = "git: commit amend no edit" }
+		)
 
 		vim.keymap.set("n", "<leader>gpl", "<cmd>Git pull<cr>", { desc = "git: pull" })
 		vim.keymap.set("n", "<leader>gpu", "<cmd>15 split|term git push<cr>", { desc = "git: push" })
