@@ -10,7 +10,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		"folke/trouble.nvim",
 		"folke/todo-comments.nvim",
-		"rmagatti/session-lens",
 	},
 	config = function()
 		local telescope = require("telescope")
