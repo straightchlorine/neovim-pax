@@ -51,6 +51,9 @@ local function dap_mappings()
 	keymap.set({ "n", "v" }, "<Leader>dp", function()
 		require("dap.ui.widgets").preview()
 	end, { desc = "debug: preview" })
+	keymap.set({ "n", "v" }, "<Leader>dt", function()
+		dap.terminate()
+	end, { desc = "debug: terminate session" })
 
 	-- dap-ui; setup as well as triggers for opening and closing
 	local dapui = require("dapui")
