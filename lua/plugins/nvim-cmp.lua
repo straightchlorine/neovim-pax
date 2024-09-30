@@ -10,11 +10,21 @@ return {
 			"L3MON4D3/LuaSnip",
 			version = "v2.*",
 			build = "make install_jsregexp",
+			config = function()
+				local ls = require("luasnip")
+				vim.keymap.set({ "i", "s" }, "<C-L>", function()
+					ls.jump(1)
+				end, { silent = true })
+				vim.keymap.set({ "i", "s" }, "<C-J>", function()
+					ls.jump(-1)
+				end, { silent = true })
+			end,
 		},
 		"saadparwaiz1/cmp_luasnip",
 		"windwp/nvim-autopairs",
 		"rafamadriz/friendly-snippets",
 		"onsails/lspkind.nvim",
+		"zbirenbaum/copilot-cmp",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -42,20 +52,21 @@ return {
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
 			}),
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "nvim_lsp_signature_help" },
-				{ name = "path" },
-				{ name = "luasnip" },
-				{ name = "buffer" },
-				{ name = "copilot" },
+				{ name = "copilot", group_index = 1 },
+				{ name = "nvim_lsp", group_index = 1 },
+				{ name = "nvim_lsp_signature_help", group_index = 1 },
+				{ name = "path", group_index = 1 },
+				{ name = "luasnip", group_index = 1 },
+				{ name = "buffer", gruop_index = 2 },
 			}),
 			window = {
 				documentation = cmp.config.window.bordered(),
 			},
 			formatting = {
 				format = lspkind.cmp_format({
-					maxwidth = 100,
-					ellipsis_char = "...",
+					mode = "symbol_text",
+					max_width = 50,
+					symbol_map = { Copilot = "" },
 				}),
 			},
 		})
