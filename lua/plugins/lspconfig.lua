@@ -77,6 +77,11 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			["vale_ls"] = function()
+				lspconfig["vale_ls"].setup({
+					filetypes = { "markdown" },
+				})
+			end,
 			["lua_ls"] = function()
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,

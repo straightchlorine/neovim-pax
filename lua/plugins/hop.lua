@@ -6,12 +6,21 @@ return {
 		multi_windows = true,
 	},
 	config = function()
-		require("hop").setup()
-		vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true, noremap = true })
-		vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true, noremap = true })
-		vim.api.nvim_set_keymap("n", "f", ":HopChar1CurrentLine<cr>", { silent = true, noremap = true })
-		vim.api.nvim_set_keymap("n", "F", ":HopWordCurrentLine<cr>", { silent = true, noremap = true })
-		vim.api.nvim_set_keymap("n", "t", ":HopChar1<cr>", { silent = true, noremap = true })
-		vim.api.nvim_set_keymap("n", "T", ":HopLine<cr>", { silent = true, noremap = true })
+		local hop = require("hop")
+		hop.setup()
+		local directions = require("hop.hint").HintDirection
+
+		vim.keymap.set("", "f", function()
+			hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+		end, { remap = true })
+		vim.keymap.set("", "F", function()
+			hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+		end, { remap = true })
+		vim.keymap.set("", "t", function()
+			hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+		end, { remap = true })
+		vim.keymap.set("", "T", function()
+			hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+		end, { remap = true })
 	end,
 }
