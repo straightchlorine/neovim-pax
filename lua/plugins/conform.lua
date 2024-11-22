@@ -7,7 +7,7 @@ return {
 				javascript = { "prettierd", "prettier" },
 				tex = { "latexindent", "bibtex-tidy" },
 				python = { "ruff_format", "autoflake" },
-				sql = { "sql-formatter" },
+				sql = { "sqlfluff", "sql_formatter" },
 				lua = { "stylua" },
 				sh = { "beautysh" },
 				zsh = { "beautysh" },
@@ -19,6 +19,7 @@ return {
 				yaml = { "yamlfmt" },
 				xml = { "xmllint" },
 				java = { "google-java-format" },
+				go = { "gofmt" },
 				-- TODO: add other languages along with new projects
 			},
 		})
