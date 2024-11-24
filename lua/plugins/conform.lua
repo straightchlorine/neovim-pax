@@ -19,7 +19,7 @@ return {
 				yaml = { "yamlfmt" },
 				xml = { "xmllint" },
 				java = { "google-java-format" },
-				go = { "gofmt" },
+				go = { "gofumpt", "golines", "goimports-reviser" },
 				-- TODO: add other languages along with new projects
 			},
 		})
