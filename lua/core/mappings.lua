@@ -23,14 +23,13 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 keymap.set("n", "<leader>vv", "<C-w>v", { desc = "split: window vertically" })
 keymap.set("n", "<leader>hh", "<C-w>s", { desc = "split: window horizontally" })
 keymap.set("n", "<leader>e", "<C-w>=", { desc = "split: equal size" })
-keymap.set("n", "<leader>x", "<cmd>close<CR>", { desc = "split: close" })
 
 -- tabs
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "tab: open new tab" })
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "tab: close current tab" })
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "tab: go to next tab" })
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "tab: go to previous tab" })
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "tab: open current buffer in new tab" })
+keymap.set("n", "<leader>tbo", "<cmd>tabnew<CR>", { desc = "tab: open new tab" })
+keymap.set("n", "<leader>tbx", "<cmd>tabclose<CR>", { desc = "tab: close current tab" })
+keymap.set("n", "<leader>tbn", "<cmd>tabn<CR>", { desc = "tab: go to next tab" })
+keymap.set("n", "<leader>tbp", "<cmd>tabp<CR>", { desc = "tab: go to previous tab" })
+keymap.set("n", "<leader>tbf", "<cmd>tabnew %<CR>", { desc = "tab: open current buffer in new tab" })
 
 -- reorder to previous/next
 keymap.set("n", "<A-<>", "<cmd>BufferLineMovePrev<CR>", { desc = "buffer: re-order to previous buffer" })
