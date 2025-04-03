@@ -1,5 +1,4 @@
 -- toggleterm.nvim
--- Configuration for the toggleterm.nvim plugin.
 -- https://github.com/akinsho/toggleterm.nvim
 
 return {
