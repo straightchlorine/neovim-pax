@@ -1,4 +1,6 @@
---- options.lua - Contains all the options.
+--- options.lua
+-- Gathers all vim options.
+---
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -113,7 +115,6 @@ vim.opt.wildignore:append({ "*.pyc", "node_modules", ".git" })
 vim.opt.formatoptions:append({ "tcraj" })
 
 -- Plugin related options
-
 vim.g.matchup_matchparen_offset = { method = "popup" }
 
 vim.o.list = false
@@ -124,3 +125,5 @@ vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
+
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80

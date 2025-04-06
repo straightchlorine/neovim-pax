@@ -1,28 +1,23 @@
 --- mappings.lua
--- User defined key mappings
+-- Main user defined key mappings
 ---
 
 local keymap = vim.keymap
 
--- general
-keymap.set("n", "<leader>+", "<C-a>", { desc = "general: increment number" })
-keymap.set("n", "<leader>-", "<C-x>", { desc = "general: decrement number" })
-
 -- help opens vertically
 vim.api.nvim_create_autocmd("BufWinEnter", {
-	pattern = "*",
-	callback = function()
-		if vim.bo.filetype == "help" then
-			vim.cmd("wincmd L")
-			vim.cmd("vertical resize 80")
-		end
-	end,
+  pattern = "*",
+  callback = function()
+    if vim.bo.filetype == "help" then
+      vim.cmd("wincmd L")
+      vim.cmd("vertical resize 80")
+    end
+  end,
 })
 
 -- splits
 keymap.set("n", "<leader>vv", "<C-w>v", { desc = "split: window vertically" })
 keymap.set("n", "<leader>hh", "<C-w>s", { desc = "split: window horizontally" })
-keymap.set("n", "<leader>e", "<C-w>=", { desc = "split: equal size" })
 
 -- tabs
 keymap.set("n", "<leader>tbo", "<cmd>tabnew<CR>", { desc = "tab: open new tab" })
