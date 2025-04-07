@@ -27,8 +27,8 @@ return {
       map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "select hunk")
 
       map("n", "<leader>gh", gs.preview_hunk, "preview hunk")
-      map("n", "<leader>gs", gs.stage_hunk, "stage hunk")
-      map("n", "<leader>gu", gs.undo_stage_hunk, "undo stage hunk")
+      map("n", "<leader>hs", gs.stage_hunk, "stage hunk")
+      map("n", "<leader>hu", gs.undo_stage_hunk, "undo stage hunk")
       map("n", "<leader>gr", gs.reset_hunk, "reset hunk")
 
       -- buffer actions

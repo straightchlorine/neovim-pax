@@ -29,7 +29,7 @@ return {
     scratch = { enabled = true },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
-    toggle = { enabled = true },
+    toggle = { enabled = true, notify = true, which_key = true },
     util = { enabled = true },
     words = { enabled = true },
   },

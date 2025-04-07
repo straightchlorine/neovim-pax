@@ -1,3 +1,6 @@
+-- neo-tree.nvim
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -17,6 +20,14 @@ return {
       { event = events.FILE_RENAMED, handler = on_move },
     })
   end,
+  window = {
+    mappings = {
+      ["P"] = { "toggle_preview", config = { use_float = false, use_image_nvim = true } },
+      ["l"] = "focus_preview",
+      ["<C-b>"] = { "scroll_preview", config = { direction = 10 } },
+      ["<C-f>"] = { "scroll_preview", config = { direction = -10 } },
+    },
+  },
   config = function()
     vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "neotree: toggle" })
   end,
