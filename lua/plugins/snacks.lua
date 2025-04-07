@@ -14,6 +14,7 @@ return {
       fps = 165,
     },
     bigfile = { enabled = true },
+    bufdelete = { enabled = true },
     debug = { enabled = true },
     dim = { enabled = true },
     image = { enabled = true },
