@@ -3,6 +3,6 @@
 
 return {
   "gennaro-tedesco/nvim-jqx",
-  event = {"BufReadPost"},
+  event = { "BufReadPost" },
   ft = { "json", "yaml" },
-},
+}
