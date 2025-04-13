@@ -18,7 +18,6 @@ return {
       arduino = { "cpplint" },
       git = { "gitlint" },
       lua = { "luacheck", "selene" },
-      python = { "flake8", "mypy", "pylint" },
       json = { "jsonlint" },
       yaml = { "yamllint" },
       vhdl = { "ghdl" },

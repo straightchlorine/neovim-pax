@@ -7,12 +7,6 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    animate = {
-      enabled = true,
-      duration = 20,
-      easing = "linear",
-      fps = 165,
-    },
     bigfile = { enabled = true },
     bufdelete = { enabled = true },
     debug = { enabled = true },

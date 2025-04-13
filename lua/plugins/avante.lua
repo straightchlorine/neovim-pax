@@ -14,6 +14,19 @@ return {
       temperature = 0,
       max_tokens = 8192,
     },
+    provider = "copilot",
+    copilot = {
+      model = "claude-3.7-sonnet",
+      behaviour = {
+        auto_apply_diff_after_generation = false,
+        enable_claude_text_editor_tool_mode = true,
+      },
+    },
+    provider = "ollama",
+    ollama = {
+      model = "qwen2.5-coder:7b",
+      endpoint = os.getenv("OLLAMA_ENDPOINT"),
+    },
   },
   build = "make",
   dependencies = {
