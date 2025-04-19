@@ -9,7 +9,7 @@ return {
     vim.g.vimtex_view_general_viewer = "zathura"
 
     vim.g.vimtex_complete_enabled = 1
-    vim.g.vimtex_complete_bib = "simple" -- Fixed typo: comlete → complete
+    vim.g.vimtex_complete_bib = "simple"
 
     vim.g.vimtex_quickfix_mode = 1
     vim.g.vimtex_quickfix_open_on_warning = 0
@@ -20,23 +20,25 @@ return {
       hide_line_numbers = 1,
     }
 
-    vim.g.vimtex_compiler_latexmk = {
-      build_dir = "",
-      callback = 1,
-      continuous = 1,
-      executable = "latexmk",
-      hooks = {},
-      options = {
-        "--shell-escape",
-        "-verbose",
-        "-file-line-error",
-        "-synctex=1",
-        "-interaction=nonstopmode",
-        "-lualatex",
-      },
-    }
-
     vim.cmd([[
+
+      let g:vimtex_compiler_latexmk = {
+        \ 'build_dir' : '',
+        \ 'callback' : 1,
+        \ 'continuous' : 1,
+        \ 'executable' : 'latexmk',
+        \ 'hooks' : [],
+        \ 'options' : [
+        \   '-shell-escape',
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \   '-lualatex',
+        \ ],
+        \}
+
+
       let g:vimtex_syntax_conceal = {
         \ 'accents': 1,
         \ 'ligatures': 1,
