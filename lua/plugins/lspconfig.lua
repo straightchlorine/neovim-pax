@@ -71,12 +71,11 @@ return {
       dynamicRegistration = false,
       lineFoldingOnly = true,
     }
+    
+    -- Fix position encoding conflicts - use UTF-16 consistently
+    capabilities.general = capabilities.general or {}
+    capabilities.general.positionEncodings = { "utf-16" }
 
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
 
     lspconfig["vale_ls"].setup({
       filetypes = { "markdown" },
@@ -209,6 +208,11 @@ return {
           },
         },
       },
+    })
+
+    -- Configure Ruff LSP with proper capabilities
+    lspconfig["ruff"].setup({
+      capabilities = capabilities,
     })
 
     -- Simple servers using native Neovim 0.11 APIs where possible

@@ -26,9 +26,11 @@ return {
 
     mason_lspconfig.setup({
       automatic_installation = true,
+      automatic_enable = false,  -- Prevent automatic LSP client attachment
       ensure_installed = {
         "lua_ls",
-        "pyright",  -- Pyright as the Python language server
+        "pyright",  -- Keep for installation but won't auto-attach
+        "ruff",     -- Keep for installation but won't auto-attach
       },
     })
 
@@ -36,7 +38,7 @@ return {
       ensure_installed = {
         "prettier",
         "stylua",
-        "ruff",  -- Ruff for Python linting/formatting (used via LSP server)
+        "ruff",  -- Ruff for Python linting/formatting (CLI tool only)
         "debugpy",
       },
       auto_update = true,

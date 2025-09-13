@@ -27,7 +27,8 @@ return {
     util = { enabled = true },
     words = { enabled = true },
   },
-  config = function()
+  config = function(_, opts)
+    require("snacks").setup(opts)
     vim.ui.select = Snacks.picker.select
     vim.ui.input = Snacks.input
     vim.notify = Snacks.notifier
