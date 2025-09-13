@@ -3,32 +3,25 @@
 
 return {
   "lervag/vimtex",
-  lazy = false,
+  ft = { "tex" },
   init = function()
     vim.g.vimtex_view_method = "zathura"
     vim.g.vimtex_view_general_viewer = "zathura"
 
-    vim.g.vimtex_complete_enabled = 1
-    vim.g.vimtex_complete_bib = "simple"
-
-    vim.g.vimtex_quickfix_mode = 1
-    vim.g.vimtex_quickfix_open_on_warning = 0
-
-    vim.g.vimtex_toc_config = {
-      mode = 1,
-      fold_enable = 1,
-      hide_line_numbers = 1,
-    }
-
     vim.cmd([[
+      let g:vimtex_toc_config = {
+        \ 'mode': 1,
+        \ 'fold_enable': 1,
+        \ 'hide_line_numbers': 1,
+      \ }
 
       let g:vimtex_compiler_latexmk = {
-        \ 'build_dir' : '',
-        \ 'callback' : 1,
-        \ 'continuous' : 1,
-        \ 'executable' : 'latexmk',
-        \ 'hooks' : [],
-        \ 'options' : [
+        \ 'build_dir': '',
+        \ 'callback': 1,
+        \ 'continuous': 1,
+        \ 'executable': 'latexmk',
+        \ 'hooks': [],
+        \ 'options': [
         \   '-shell-escape',
         \   '-verbose',
         \   '-file-line-error',
@@ -37,7 +30,6 @@ return {
         \   '-lualatex',
         \ ],
         \}
-
 
       let g:vimtex_syntax_conceal = {
         \ 'accents': 1,
@@ -55,7 +47,9 @@ return {
         \ 'styles': 1,
         \}
     ]])
-
+  end,
+  config = function()
+    -- Set up keymaps when tex filetype is detected
     vim.api.nvim_create_autocmd("FileType", {
       pattern = { "tex" },
       callback = function()

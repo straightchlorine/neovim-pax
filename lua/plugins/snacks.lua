@@ -22,12 +22,16 @@ return {
     rename = { enabled = true },
     scope = { enabled = true },
     scratch = { enabled = true },
-    scroll = { enabled = true },
     statuscolumn = { enabled = true },
     toggle = { enabled = true, notify = true, which_key = true },
     util = { enabled = true },
     words = { enabled = true },
   },
+  config = function()
+    vim.ui.select = Snacks.picker.select
+    vim.ui.input = Snacks.input
+    vim.notify = Snacks.notifier
+  end,
   keys = {
     -- stylua: ignore start
     -- pickers

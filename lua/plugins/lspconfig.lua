@@ -69,58 +69,59 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    mason_lspconfig.setup_handlers({
-      function(server_name)
-        lspconfig[server_name].setup({
-          capabilities = capabilities,
-        })
-      end,
-      ["vale_ls"] = function()
-        lspconfig["vale_ls"].setup({
-          filetypes = { "markdown" },
-        })
-      end,
-      ["lua_ls"] = function()
-        lspconfig["lua_ls"].setup({
-          capabilities = capabilities,
-          settings = {
-            Lua = {
-              diagnostics = {
-                globals = { "vim", "awesome" },
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
-              hint = {
-                enable = true,
-              },
-            },
-          },
-        })
-      end,
-      ["clangd"] = function()
-        lspconfig["clangd"].setup({
-          capabilities = capabilities,
-          cmd = { "clangd", "--background-index" },
-          filetypes = { "c", "cpp", "objc", "objcpp" },
-          root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
-          settings = {
-            ccls = {
-              completion = {
-                filterAndSort = false,
-              },
-              index = {
-                blacklist = { "build" },
-                threads = 0,
-              },
-              workspace = {
-                compilationDatabaseDirectory = "build",
-                directory = ".",
-              },
-            },
-          },
-        })
-      end,
+    lspconfig["vale_ls"].setup({
+      filetypes = { "markdown" },
     })
+
+    lspconfig["lua_ls"].setup({
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim", "awesome" },
+          },
+          completion = {
+            callSnippet = "Replace",
+          },
+          hint = {
+            enable = true,
+          },
+        },
+      },
+    })
+
+    lspconfig["clangd"].setup({
+      capabilities = capabilities,
+      cmd = { "clangd", "--background-index" },
+      filetypes = { "c", "cpp", "objc", "objcpp" },
+      root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+      settings = {
+        ccls = {
+          completion = {
+            filterAndSort = false,
+          },
+          index = {
+            blacklist = { "build" },
+            threads = 0,
+          },
+          workspace = {
+            compilationDatabaseDirectory = "build",
+            directory = ".",
+          },
+        },
+      },
+    })
+
+    local servers = {
+      "pyright",
+      "ts_ls",
+      "texlab",
+    }
+
+    for _, server in ipairs(servers) do
+      lspconfig[server].setup({
+        capabilities = capabilities,
+      })
+    end
   end,
 }

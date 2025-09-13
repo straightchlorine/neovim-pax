@@ -38,7 +38,6 @@ return {
         "stylua",
         "black",
 
-        "eslint_d",
         "flake8",
 
         "debugpy",

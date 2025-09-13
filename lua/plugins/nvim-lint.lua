@@ -27,7 +27,6 @@ return {
       typescript = { "eslint" },
       verilog = { "verilator" },
       sql = { "sqlfluff" },
-      tex = { "chktex" },
       sh = { "shellcheck" },
       bash = { "shellcheck" },
       zsh = { "shellcheck" },

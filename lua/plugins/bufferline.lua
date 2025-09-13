@@ -14,15 +14,12 @@ return {
         style_preset = bufferline.style_preset.minimal,
         numbers = "ordinal",
         close_command = function(bufnum)
-          require("bufferline").unselect_buffer_by_id(bufnum)
           Snacks.bufdelete(bufnum)
         end,
         right_mouse_command = function(bufnum)
-          require("bufferline").unselect_buffer_by_id(bufnum)
           Snacks.bufdelete(bufnum)
         end,
         left_mouse_command = function(bufnum)
-          require("bufferline").unselect_buffer_by_id(bufnum)
           vim.api.nvim_set_current_buf(bufnum)
         end,
         indicator = {
