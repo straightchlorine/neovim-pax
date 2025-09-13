@@ -28,7 +28,7 @@ return {
       automatic_installation = true,
       ensure_installed = {
         "lua_ls",
-        "pyright",
+        "pyright",  -- Pyright as the Python language server
       },
     })
 
@@ -36,10 +36,7 @@ return {
       ensure_installed = {
         "prettier",
         "stylua",
-        "black",
-
-        "flake8",
-
+        "ruff",  -- Ruff for Python linting/formatting (used via LSP server)
         "debugpy",
       },
       auto_update = true,
