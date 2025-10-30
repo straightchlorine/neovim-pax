@@ -17,7 +17,15 @@ return {
     lazygit = { enabled = true },
     notifier = { enabled = true },
     notify = { enabled = true },
-    picker = { enabled = true },
+    picker = { 
+      enabled = true,
+      win = {
+        keys = {
+          ["<c-n>"] = "down",
+          ["<c-p>"] = "up", 
+        },
+      },
+    },
     quickfile = { enabled = true },
     rename = { enabled = true },
     scope = { enabled = true },
@@ -29,6 +37,7 @@ return {
   },
   config = function(_, opts)
     require("snacks").setup(opts)
+    -- Snacks handles all UI interfaces since dressing.nvim is archived
     vim.ui.select = Snacks.picker.select
     vim.ui.input = Snacks.input
     vim.notify = Snacks.notifier
@@ -40,21 +49,21 @@ return {
     { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
     { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
-    { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification History" },
+    { "<leader>sN", function() Snacks.picker.notifications() end, desc = "Notification History" },
     -- find
-    { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-    { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
-    { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
-    { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
-    { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects"},
-    { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent" },
-    -- git
-    { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
-    { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
-    { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
-    { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
-    { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
-    { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+    { "<leader>Fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
+    { "<leader>Fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+    { "<leader>Ff", function() Snacks.picker.files() end, desc = "Find Files" },
+    { "<leader>Fg", function() Snacks.picker.git_files() end, desc = "Find Git Files" },
+    { "<leader>Fp", function() Snacks.picker.projects() end, desc = "Projects"},
+    { "<leader>Fr", function() Snacks.picker.recent() end, desc = "Recent" },
+    -- git (telescope-style pickers)
+    { "<leader>Gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+    { "<leader>Gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+    { "<leader>GL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
+    { "<leader>GS", function() Snacks.picker.git_stash() end, desc = "Git Stash" },
+    { "<leader>Gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" },
+    { "<leader>Gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
     { "<leader>lg", function() Snacks.lazygit() end, desc = "Lazygit" },
     -- grep
     { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
@@ -83,10 +92,10 @@ return {
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
     { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-    -- lsp
+    -- lsp (these override the lspconfig mappings to use snacks picker)
     { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
     { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
-    { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References"  },
+    { "gR", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References"  },
     { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
     { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },

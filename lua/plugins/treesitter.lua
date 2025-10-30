@@ -36,6 +36,7 @@ return {
       ensure_installed = {
         "arduino",
         "asm",
+        "astro",        -- Frontend framework
         "bash",
         "bibtex",
         "c",
@@ -53,10 +54,12 @@ return {
         "gitattributes",
         "gitcommit",
         "gitignore",
+        "go",
         "haskell",
         "html",
         "java",
         "javascript",
+        "jsdoc",        -- JSDoc comments
         "json",
         "jq",
         "julia",
@@ -75,14 +78,18 @@ return {
         "regex",
         "rust",
         "scala",
+        "scss",         -- SCSS/Sass
         "sql",
+        "svelte",       -- Svelte framework
         "tmux",
+        "tsx",          -- TypeScript JSX
+        "typescript",   -- Explicit TypeScript
         "verilog",
         "vim",
         "vimdoc",
+        "vue",          -- Vue.js
         "xml",
         "yaml",
-        "go",
       },
 
       incremental_selection = {

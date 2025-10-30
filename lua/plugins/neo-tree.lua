@@ -11,6 +11,9 @@ return {
       "MunifTanjim/nui.nvim",
     },
     config = function()
+      -- Disable as default file explorer since oil.nvim handles that
+      vim.g.neo_tree_remove_legacy_commands = 1
+      
       local events = require("neo-tree.events")
       require("neo-tree").setup({
         -- attach your FILE_MOVED / FILE_RENAMED handlers:

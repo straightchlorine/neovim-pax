@@ -23,6 +23,8 @@ return {
       tsx = { "prettierd", "prettier" },
       html = { "prettierd", "prettier" },
       css = { "prettierd", "prettier" },
+      scss = { "prettierd", "prettier" },
+      sass = { "prettierd", "prettier" },
       json = { "prettierd", "prettier" },
       tex = { "latexindent", "bibtex-tidy" },
       python = { "ruff_format" },
@@ -61,6 +63,7 @@ return {
         env = {
           PRETTIER_LEGACY_CLI = "1",
         },
+        args = { "--stdin-filepath", "$FILENAME" },
       },
       clang_format = {
         prepend_args = { "--style=file" },

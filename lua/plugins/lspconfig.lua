@@ -30,20 +30,8 @@ return {
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
 
-        opts.desc = "lsp: show references"
-        keymap.set("n", "gR", "<cmd>:Telescope lsp_references<CR>", opts)
-
-        opts.desc = "lsp: go to declaration"
-        keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-
-        opts.desc = "lsp: show definitions"
-        keymap.set("n", "gd", "<cmd>:Telescope lsp_definitions<CR>", opts)
-
-        opts.desc = "lsp: show implementations"
-        keymap.set("n", "gi", "<cmd>:Telescope lsp_implementations<CR>", opts)
-
-        opts.desc = "lsp: show type definitions"
-        keymap.set("n", "gt", "<cmd>:Telescope lsp_type_definitions<CR>", opts)
+        -- LSP navigation handled by snacks.nvim pickers (gd, gD, gR, gI, gy)
+        -- This provides better UI and consistency with other pickers
 
         opts.desc = "lsp: code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
@@ -52,10 +40,10 @@ return {
         keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 
         opts.desc = "lsp: buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>:Telescope diagnostics bufnr=0<CR>", opts)
+        keymap.set("n", "<leader>DD", "<cmd>:Telescope diagnostics bufnr=0<CR>", opts)
 
         opts.desc = "lsp: inline diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
+        keymap.set("n", "<leader>Di", vim.diagnostic.open_float, opts)
 
         opts.desc = "lsp: show doc on hover"
         keymap.set("n", "K", vim.lsp.buf.hover, opts)
@@ -215,10 +203,39 @@ return {
       capabilities = capabilities,
     })
 
+    -- Emmet LSP for HTML/CSS productivity
+    lspconfig["emmet_ls"].setup({
+      capabilities = capabilities,
+      filetypes = {
+        "html",
+        "css",
+        "scss",
+        "sass",
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "vue",
+        "svelte",
+      },
+      init_options = {
+        html = {
+          options = {
+            ["bem.enabled"] = true,
+          },
+        },
+      },
+    })
+
     -- Simple servers using native Neovim 0.11 APIs where possible
     local simple_servers = {
       "ts_ls",
       "texlab",
+      "tailwindcss",
+      "cssls",
+      "html",
+      "jsonls",
+      "eslint",
     }
 
     for _, server in ipairs(simple_servers) do

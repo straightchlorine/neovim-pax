@@ -43,10 +43,10 @@ return {
         },
         mappings = {
           i = {
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
+            ["<C-n>"] = actions.move_selection_next,
+            ["<C-p>"] = actions.move_selection_previous,
+            ["<C-j>"] = actions.cycle_history_next,
+            ["<C-k>"] = actions.cycle_history_prev,
             ["<C-c>"] = actions.close,
             ["<C-u>"] = actions.preview_scrolling_up,
             ["<C-d>"] = actions.preview_scrolling_down,
@@ -117,16 +117,16 @@ return {
     local keymap = vim.keymap
 
     -- file navigation
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope: find files" })
-    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "telescope: find recent files" })
-    keymap.set("n", "<leader>fb", "<cmd>Telescope file_browser<cr>", { desc = "telescope: file browser" })
+    keymap.set("n", "<leader>Ff", "<cmd>Telescope find_files<cr>", { desc = "telescope: find files" })
+    keymap.set("n", "<leader>Fr", "<cmd>Telescope oldfiles<cr>", { desc = "telescope: find recent files" })
+    keymap.set("n", "<leader>Fb", "<cmd>Telescope file_browser<cr>", { desc = "telescope: file browser" })
 
     -- grep
-    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "telescope: find string" })
-    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "telescope: string under cursor" })
+    keymap.set("n", "<leader>Fs", "<cmd>Telescope live_grep<cr>", { desc = "telescope: find string" })
+    keymap.set("n", "<leader>Fc", "<cmd>Telescope grep_string<cr>", { desc = "telescope: string under cursor" })
     keymap.set(
       "n",
-      "<leader>fw",
+      "<leader>Fw",
       "<cmd>Telescope current_buffer_fuzzy_find<cr>",
       { desc = "telescope: fuzzy find in buffer" }
     )
@@ -141,7 +141,7 @@ return {
     keymap.set("n", "<leader>ct", "<cmd>Telescope colorscheme<cr>", { desc = "telescope: colorschemes" })
     keymap.set("n", "<leader>cm", "<cmd>Telescope commands<cr>", { desc = "telescope: commands" })
     keymap.set("n", "<leader>hl", "<cmd>Telescope highlights<cr>", { desc = "telescope: highlights" })
-    keymap.set("n", "<leader>bf", "<cmd>Telescope buffers<cr>", { desc = "telescope: buffers" })
+    keymap.set("n", "<leader>B", "<cmd>Telescope buffers<cr>", { desc = "telescope: buffers" })
 
     -- todo comments
     keymap.set("n", "<leader>td", "<cmd>TodoTelescope<cr>", { desc = "telescope: todo comments" })
