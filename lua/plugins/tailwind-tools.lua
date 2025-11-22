@@ -7,7 +7,6 @@ return {
   build = ":UpdateRemotePlugins",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
-    "nvim-telescope/telescope.nvim", -- optional
     "neovim/nvim-lspconfig", -- optional
   },
   opts = {
@@ -26,6 +25,9 @@ return {
       },
     },
     custom_filetypes = {}, -- see the extension section to learn how it works
+    server = {
+      override = false, -- Disable automatic LSP setup to avoid deprecated lspconfig calls
+    },
   },
   config = function(_, opts)
     require("tailwind-tools").setup(opts)

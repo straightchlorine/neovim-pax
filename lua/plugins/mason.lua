@@ -3,8 +3,7 @@
 
 return {
   "williamboman/mason.nvim",
-  lazy = false,
-  priority = 1000,
+  cmd = { "Mason", "MasonInstall", "MasonUninstall", "MasonUpdate", "MasonLog" },
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -26,38 +25,33 @@ return {
 
     mason_lspconfig.setup({
       automatic_installation = true,
-      automatic_enable = false,  -- Prevent automatic LSP client attachment
+      automatic_enable = false,
       ensure_installed = {
         "lua_ls",
-        "pyright",  -- Keep for installation but won't auto-attach
-        "ruff",     -- Keep for installation but won't auto-attach
-        -- Frontend language servers
-        "ts_ls",                  -- TypeScript/JavaScript
-        "tailwindcss",           -- Tailwind CSS
-        "emmet_ls",              -- Emmet for HTML/CSS
-        "cssls",                 -- CSS language server
-        "html",                  -- HTML language server
-        "jsonls",                -- JSON language server
-        "eslint",                -- ESLint language server
-        "vuels",                 -- Vue language server (if using Vue)
-        "svelte",                -- Svelte language server (if using Svelte)
-        "astro",                 -- Astro language server (if using Astro)
+        "pyright",
+        "ruff",
+        "gopls",
+        "tailwindcss",
+        "emmet_ls",
+        "cssls",
+        "html",
+        "jsonls",
+        "eslint",
       },
     })
 
     mason_tool_installer.setup({
       ensure_installed = {
         "prettier",
-        "prettierd",        -- Faster prettier daemon
+        "prettierd",
         "stylua",
-        "ruff",             -- Ruff for Python linting/formatting (CLI tool only)
+        "ruff",
         "debugpy",
-        -- Frontend tools
-        "eslint_d",         -- ESLint daemon for faster linting
-        "stylelint",        -- CSS/SCSS linting
+        "eslint_d",
+        "stylelint",
       },
-      auto_update = true,
-      run_on_start = true,
+      auto_update = false,
+      run_on_start = false,
     })
   end,
 }

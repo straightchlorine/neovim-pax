@@ -7,7 +7,6 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "saghen/blink.cmp", -- Optional: For using slash commands and variables in the chat buffer
-    "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
     "folke/snacks.nvim", -- Optional: Improves `vim.ui.select` (replaces archived dressing.nvim)
   },
   config = function()
@@ -21,13 +20,44 @@ return {
         },
         agent = {
           adapter = "anthropic",
+          tools = {
+            ["editor"] = {
+              enabled = true,
+            },
+            ["cmd_runner"] = {
+              enabled = true,
+            },
+            ["rag"] = {
+              enabled = true,
+            },
+          },
         },
       },
       adapters = {
         http = {
-          anthropic = {
-            api_key = os.getenv("ANTHROPIC_API_KEY"),
-          },
+          -- Claude Code Integration (Uses your Pro plan via bearer token)
+          -- Extract token from Claude Code DevTools (Ctrl+Shift+I → Network tab)
+          -- Then set: export ANTHROPIC_BEARER_TOKEN=your_token_here
+          anthropic = function()
+            return require("codecompanion.adapters").extend("anthropic", {
+              env = { bearer_token = "ANTHROPIC_BEARER_TOKEN" },
+              headers = {
+                ["authorization"] = "Bearer ${bearer_token}",
+                ["anthropic-beta"] = "claude-code-20250219,oauth-2025-04-20",
+              },
+              handlers = {
+                setup = function(self)
+                  self.headers["x-api-key"] = nil
+                  return true
+                end,
+              },
+              schema = {
+                model = {
+                  default = "claude-sonnet-4-20250514",
+                },
+              },
+            })
+          end,
         },
       },
       opts = {
@@ -60,7 +90,7 @@ return {
           -- Show the token count of the current conversation
           show_token_count = true,
           -- Border to use for the chat buffer. Options are single, double, rounded, solid, shadow
-          border = "single",
+          border = "rounded",
           -- What to show in the header of the chat buffer:
           -- • name - just the name of the chat
           -- • model - the model being used in the chat
@@ -83,9 +113,9 @@ return {
       },
     })
 
-    -- Keybindings
-    vim.keymap.set("n", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true, desc = "codecompanion: action palette" })
-    vim.keymap.set("v", "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true, desc = "codecompanion: action palette" })
+    -- Keybindings (changed from <C-a> to preserve Vim's increment command)
+    vim.keymap.set("n", "<leader>ai", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true, desc = "codecompanion: action palette" })
+    vim.keymap.set("v", "<leader>ai", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true, desc = "codecompanion: action palette" })
     vim.keymap.set("n", "<LocalLeader>a", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true, desc = "codecompanion: toggle chat" })
     vim.keymap.set("v", "<LocalLeader>a", "<cmd>CodeCompanionToggle<cr>", { noremap = true, silent = true, desc = "codecompanion: toggle chat" })
     vim.keymap.set("v", "ga", "<cmd>CodeCompanionAdd<cr>", { noremap = true, silent = true, desc = "codecompanion: add to chat" })

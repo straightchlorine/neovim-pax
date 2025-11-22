@@ -8,60 +8,54 @@ return {
     require("mini.ai").setup()
     require("mini.bracketed").setup()
     require("mini.clue").setup()
-    require("mini.comment").setup()
+
+    -- Treesitter-aware commenting
+    require("mini.comment").setup({
+      options = {
+        custom_commentstring = function()
+          return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+    })
+
     require("mini.cursorword").setup()
     require("mini.trailspace").setup()
-    
-    -- Color highlighting (replaces colorizer.nvim)
+    require("mini.pairs").setup()
+
+    require("mini.statusline").setup({
+      use_icons = true,
+      set_vim_settings = true,
+      content = {
+        active = function()
+          local mode, mode_hl = require("mini.statusline").section_mode({ trunc_width = 120 })
+          local git = require("mini.statusline").section_git({ trunc_width = 75 })
+          local diagnostics = require("mini.statusline").section_diagnostics({ trunc_width = 75 })
+          local filename = require("mini.statusline").section_filename({ trunc_width = 140 })
+          local fileinfo = require("mini.statusline").section_fileinfo({ trunc_width = 120 })
+          local location = require("mini.statusline").section_location({ trunc_width = 75 })
+          local search = require("mini.statusline").section_searchcount({ trunc_width = 75 })
+
+          return require("mini.statusline").combine_groups({
+            { hl = mode_hl, strings = { mode } },
+            { hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
+            "%<", -- Mark general truncate point
+            { hl = "MiniStatuslineFilename", strings = { filename } },
+            "%=", -- End left alignment
+            { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+            { hl = mode_hl, strings = { search, location } },
+          })
+        end,
+      },
+    })
+
     require("mini.hipatterns").setup({
       highlighters = {
-        -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
         fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
         hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
         todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
         note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
-
-        -- Highlight hex color strings (`#rrggbb`) with that color
         hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
       },
     })
-    
-    -- File management (modern marks replacement)
-    require("mini.files").setup({
-      content = {
-        filter = nil,
-        prefix = nil,
-        sort = nil,
-      },
-      mappings = {
-        close       = 'q',
-        go_in       = 'l',
-        go_in_plus  = 'L',
-        go_out      = 'h',
-        go_out_plus = 'H',
-        mark_goto   = "'",
-        mark_set    = 'm',
-        reset       = '<BS>',
-        reveal_cwd  = '@',
-        show_help   = 'g?',
-        synchronize = '=',
-        trim_left   = '<',
-        trim_right  = '>',
-      },
-      options = {
-        permanent_delete = true,
-        use_as_default_explorer = false,
-      },
-      windows = {
-        max_number = math.huge,
-        preview = false,
-        width_focus = 50,
-        width_nofocus = 15,
-        width_preview = 25,
-      },
-    })
-
-    -- Keybinding for mini.files (alternative to oil.nvim for some operations)
-    vim.keymap.set("n", "<leader>mf", function() require("mini.files").open() end, { desc = "mini: open file manager" })
   end,
 }

@@ -5,8 +5,10 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Provider configuration
 vim.g.python3_host_prog = "/usr/bin/python"
-vim.g.mapleader = " "
+vim.g.loaded_perl_provider = 0  -- Disable Perl provider (unused)
+vim.g.loaded_ruby_provider = 0  -- Disable Ruby provider (unused)
 
 vim.o.termguicolors = true
 vim.o.redrawtime = 1500
@@ -69,7 +71,7 @@ vim.o.expandtab = true
 vim.o.smartcase = true
 vim.o.infercase = true
 vim.o.smarttab = true
-vim.o.showtabline = 2
+vim.o.showtabline = 0 -- Disable top bar (file path shown in statusline)
 
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
@@ -125,12 +127,5 @@ vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
-
-vim.ui.select = Snacks.picker.select
-vim.ui.input = Snacks.input
-
-vim.cmd("let g:gruvbox_transparent_bg = 1")
-vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
-vim.cmd("colorscheme gruvbox")
 
 -- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80

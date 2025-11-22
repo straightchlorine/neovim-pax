@@ -10,9 +10,7 @@ return {
   config = function()
     local lint = require("lint")
 
-    -- linters by ft
     lint.linters_by_ft = {
-      python = { "ruff" },  -- Ruff as a linter tool (not LSP server)
       markdown = { "vale" },
       c = { "cpplint" },
       cpp = { "cpplint" },
@@ -24,8 +22,6 @@ return {
       vhdl = { "ghdl" },
       html = { "tidy" },
       css = { "stylelint" },
-      javascript = { "eslint" },
-      typescript = { "eslint" },
       verilog = { "verilator" },
       sql = { "sqlfluff" },
       sh = { "shellcheck" },
@@ -35,7 +31,6 @@ return {
       rust = { "cargo" },
     }
 
-    -- specific settings for linters
     lint.linters.luacheck.args = {
       "--globals",
       "vim",
@@ -46,33 +41,19 @@ return {
       "--no-max-line-length",
     }
 
-    -- Configure ruff linter with proper settings
-    lint.linters.ruff.args = {
-      "check",
-      "--force-exclude",
-      "--quiet",
-      "--stdin-filename",
-      function() return vim.api.nvim_buf_get_name(0) end,
-      "--no-fix",
-      "-",
-    }
-
-    -- if file is too large, skip linting
     local function is_file_too_large(bufnr)
       local max_filesize = 100 * 1024 -- max 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
+      local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(bufnr))
       if ok and stats and stats.size > max_filesize then
         return true
       end
       return false
     end
 
-    -- debouncing
     local lint_augroup = vim.api.nvim_create_augroup("Linting", { clear = true })
     local timer = nil
     local debounce_ms = 300
 
-    -- schedule linting
     local function schedule_lint()
       if timer then
         timer:stop()
@@ -81,27 +62,23 @@ return {
       timer = vim.defer_fn(function()
         local bufnr = vim.api.nvim_get_current_buf()
 
-        -- skip linting for large files
         if is_file_too_large(bufnr) then
           local msg = "File too large, linting skipped"
           vim.notify(msg, vim.log.levels.INFO, { title = "nvim-lint" })
           return
         end
 
-        -- ensure buffer is valid
         if vim.api.nvim_buf_is_valid(bufnr) then
           require("lint").try_lint(nil, { bufnr = bufnr })
         end
       end, debounce_ms)
     end
 
-    -- autocommands for linting
     vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" }, {
       group = lint_augroup,
       callback = schedule_lint,
     })
 
-    -- manual control over the process
     vim.api.nvim_create_user_command("LintStop", function()
       vim.api.nvim_clear_autocmds({ group = lint_augroup })
       vim.notify("Linting stopped", vim.log.levels.INFO, { title = "nvim-lint" })
@@ -124,7 +101,6 @@ return {
       vim.notify("Linting triggered manually", vim.log.levels.INFO, { title = "nvim-lint" })
     end, {})
 
-    -- run initial lint
     schedule_lint()
   end,
 }

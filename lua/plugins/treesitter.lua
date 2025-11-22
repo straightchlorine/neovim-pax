@@ -10,16 +10,6 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "JoosepAlviste/nvim-ts-context-commentstring",
     "HiPhish/rainbow-delimiters.nvim",
-    {
-      "numToStr/Comment.nvim",
-      config = function()
-        require("Comment").setup({
-          pre_hook = function()
-            return vim.bo.commentstring
-          end,
-        })
-      end,
-    },
   },
   config = function()
     require("nvim-treesitter.configs").setup({
@@ -32,63 +22,32 @@ return {
 
       auto_install = true,
 
-      -- parsers
       ensure_installed = {
-        "arduino",
-        "asm",
-        "astro",        -- Frontend framework
         "bash",
-        "bibtex",
         "c",
-        "c_sharp",
-        "cmake",
-        "comment",
         "cpp",
         "css",
-        "csv",
-        "dart",
-        "disassembly",
         "dockerfile",
-        "git_config",
-        "git_rebase",
-        "gitattributes",
         "gitcommit",
         "gitignore",
         "go",
-        "haskell",
         "html",
-        "java",
         "javascript",
-        "jsdoc",        -- JSDoc comments
         "json",
-        "jq",
-        "julia",
         "latex",
-        "llvm",
         "lua",
         "luadoc",
-        "luap",
         "markdown",
         "markdown_inline",
-        "meson",
-        "ninja",
-        "psv",
         "python",
-        "rasi",
         "regex",
         "rust",
-        "scala",
-        "scss",         -- SCSS/Sass
         "sql",
-        "svelte",       -- Svelte framework
-        "tmux",
-        "tsx",          -- TypeScript JSX
-        "typescript",   -- Explicit TypeScript
-        "verilog",
+        "toml",
+        "tsx",
+        "typescript",
         "vim",
         "vimdoc",
-        "vue",          -- Vue.js
-        "xml",
         "yaml",
       },
 
@@ -154,7 +113,10 @@ return {
       },
     })
 
-    require("ts_context_commentstring").setup()
+    -- Configure ts_context_commentstring for mini.comment integration
+    require("ts_context_commentstring").setup({
+      enable_autocmd = false, -- Disable autocmd, we'll call it from mini.comment
+    })
     vim.g.skip_ts_context_commentstring_module = true
 
     local rainbow_delimiters = require("rainbow-delimiters")

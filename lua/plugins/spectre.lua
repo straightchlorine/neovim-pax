@@ -30,7 +30,7 @@ return {
       desc = "spectre: search current word",
     },
     {
-      "<leader>sp",
+      "<leader>sf",
       function()
         require("spectre").open_file_search({ select_word = true })
       end,

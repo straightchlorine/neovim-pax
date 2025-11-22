@@ -42,3 +42,4 @@ luac.out
 # Generated
 .luarc.json
 plugin
+/spell/*

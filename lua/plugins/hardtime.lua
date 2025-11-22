@@ -1,6 +1,6 @@
 return {
   "m4xshen/hardtime.nvim",
-  lazy = false,
+  event = "VeryLazy", -- Load after startup to improve startup time
   dependencies = { "MunifTanjim/nui.nvim" },
   opts = {},
 }

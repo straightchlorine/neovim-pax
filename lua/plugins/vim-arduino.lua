@@ -1,10 +1,8 @@
 -- vim-arduino
 -- https://github.com/stevearc/vim-arduino
--- TODO: check if this plugin is useful at all
 
 return {
   "stevearc/vim-arduino",
-  ft = "arduino",
   config = function()
     local keymap = vim.keymap
 

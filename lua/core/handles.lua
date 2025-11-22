@@ -1,9 +1,4 @@
---- handles.lua
--- Groups user commands.
----
-
--- If invoked as a preview callback, performs 'inccommand' preview by
--- highlighting trailing whitespace in the current buffer.
+-- Preview callback for 'inccommand' - highlights trailing whitespace
 local function trim_space_preview(opts, preview_ns, preview_buf)
   vim.cmd('hi clear Whitespace')
   local line1 = opts.line1
@@ -14,7 +9,6 @@ local function trim_space_preview(opts, preview_ns, preview_buf)
   for i, line in ipairs(lines) do
     local start_idx, end_idx = string.find(line, '%s+$')
     if start_idx then
-      -- Highlight the match
       vim.api.nvim_buf_add_highlight(
         buf,
         preview_ns,
@@ -23,8 +17,7 @@ local function trim_space_preview(opts, preview_ns, preview_buf)
         start_idx - 1,
         end_idx
       )
-      -- Add lines and set highlights in the preview buffer
-      -- if inccommand=split
+      -- Preview buffer for inccommand=split
       if preview_buf then
         local prefix = string.format('|%d| ', line1 + i - 1)
         vim.api.nvim_buf_set_lines(
@@ -46,10 +39,9 @@ local function trim_space_preview(opts, preview_ns, preview_buf)
       end
     end
   end
-  -- Return the value of the preview type
   return 2
 end
--- Trims all trailing whitespace in the current buffer.
+
 local function trim_space(opts)
   local line1 = opts.line1
   local line2 = opts.line2
@@ -62,11 +54,8 @@ local function trim_space(opts)
   vim.api.nvim_buf_set_lines(buf, line1 - 1, line2, false, new_lines)
 end
 
--- Create the user command
 vim.api.nvim_create_user_command(
   'TrimTrailingWhitespace',
   trim_space,
   { nargs = '?', range = '%', addr = 'lines', preview = trim_space_preview }
 )
-
--- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
