@@ -126,4 +126,11 @@ vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
+vim.ui.select = Snacks.picker.select
+vim.ui.input = Snacks.input
+
+vim.cmd("let g:gruvbox_transparent_bg = 1")
+vim.cmd("autocmd VimEnter * hi Normal ctermbg=NONE guibg=NONE")
+vim.cmd("colorscheme gruvbox")
+
 -- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80

@@ -12,13 +12,13 @@ return {
 
     -- linters by ft
     lint.linters_by_ft = {
+      python = { "ruff" },  -- Ruff as a linter tool (not LSP server)
       markdown = { "vale" },
       c = { "cpplint" },
       cpp = { "cpplint" },
       arduino = { "cpplint" },
       git = { "gitlint" },
       lua = { "luacheck", "selene" },
-      python = { "flake8", "mypy", "pylint" },
       json = { "jsonlint" },
       yaml = { "yamllint" },
       vhdl = { "ghdl" },
@@ -28,7 +28,6 @@ return {
       typescript = { "eslint" },
       verilog = { "verilator" },
       sql = { "sqlfluff" },
-      tex = { "chktex" },
       sh = { "shellcheck" },
       bash = { "shellcheck" },
       zsh = { "shellcheck" },
@@ -47,9 +46,15 @@ return {
       "--no-max-line-length",
     }
 
-    lint.linters.flake8.args = {
-      "--max-line-length=100",
-      "--ignore=E203,W503",
+    -- Configure ruff linter with proper settings
+    lint.linters.ruff.args = {
+      "check",
+      "--force-exclude",
+      "--quiet",
+      "--stdin-filename",
+      function() return vim.api.nvim_buf_get_name(0) end,
+      "--no-fix",
+      "-",
     }
 
     -- if file is too large, skip linting

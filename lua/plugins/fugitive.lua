@@ -7,11 +7,11 @@ return {
     -- basic operations
     vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr>", { desc = "git: status" })
     vim.keymap.set("n", "<leader>ga", "<cmd>Gwrite<cr>", { desc = "git: add current file" })
-    vim.keymap.set("n", "<leader>gr", "<cmd>GRead<cr>", { desc = "git: checkout current file" })
+    vim.keymap.set("n", "<leader>gco", "<cmd>GRead<cr>", { desc = "git: checkout current file" })
 
     -- git log
-    vim.keymap.set("n", "<leader>fgl", "<cmd>Git log<cr>", { desc = "git: log" })
-    vim.keymap.set("n", "<leader>fglf", "<cmd>Git log -p %<cr>", { desc = "git: file history" })
+    vim.keymap.set("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "git: log" })
+    vim.keymap.set("n", "<leader>glf", "<cmd>Git log -p %<cr>", { desc = "git: file history" })
 
     -- git commit
     vim.keymap.set("n", "<leader>gc", "<cmd>Git commit<cr>", { desc = "git: commit" })
