@@ -11,6 +11,9 @@
 
 ## About
 
+**Repository:** [Codeberg](https://codeberg.org/piotrkrzysztof/cloud) (primary) ·
+[GitHub](https://github.com/straightchlorine/cloud) (mirror)
+
 Pax is a modularised and extensive Neovim configuration.
 
 Currently it has **65** plugins, providing support for a vast array of technologies.
