@@ -26,3 +26,5 @@ keymap.set("n", "<leader>tbf", "<cmd>tabnew %<CR>", { desc = "tab: open current 
 
 keymap.set("n", "<A-,>", "<cmd>bprevious<CR>", { desc = "buffer: move to previous buffer" })
 keymap.set("n", "<A-.>", "<cmd>bnext<CR>", { desc = "buffer: move to next buffer" })
+
+keymap.set("t", "<C-Space>", "<C-\\><C-n>", { desc = "terminal: exit terminal mode" })
