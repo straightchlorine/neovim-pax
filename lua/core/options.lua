@@ -2,6 +2,8 @@
 -- Gathers all vim options.
 ---
 
+vim.filetype.add({ extension = { mdx = "markdown" } })
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 

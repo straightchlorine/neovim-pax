@@ -28,7 +28,7 @@ return {
       bash = { "shellcheck" },
       zsh = { "shellcheck" },
       go = { "golangcilint" },
-      rust = { "cargo" },
+      rust = { "clippy" },
     }
 
     lint.linters.luacheck.args = {

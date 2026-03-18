@@ -214,6 +214,24 @@ function DAPConfig.setup_languages()
   dap.configurations.c = dap.configurations.cpp
   dap.configurations.rust = dap.configurations.cpp
 
+  dap.adapters.coreclr = {
+    type = "executable",
+    command = "netcoredbg",
+    args = { "--interpreter=vscode" },
+  }
+
+  dap.configurations.cs = {
+    {
+      type = "coreclr",
+      name = "Launch",
+      request = "launch",
+      program = function()
+        return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/bin/Debug/", "file")
+      end,
+      cwd = "${workspaceFolder}",
+    },
+  }
+
   dap.adapters.delve = {
     type = 'server',
     port = '${port}',

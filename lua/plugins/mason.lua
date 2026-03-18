@@ -49,6 +49,8 @@ return {
         "debugpy",
         "eslint_d",
         "stylelint",
+        "csharpier",
+        "netcoredbg",
       },
       auto_update = false,
       run_on_start = false,

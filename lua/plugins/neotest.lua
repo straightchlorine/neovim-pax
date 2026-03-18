@@ -56,6 +56,12 @@ function NeotestConfig.setup_adapters()
 
     -- C/C++ (Google Test)
     require("neotest-gtest").setup({}),
+
+    -- C# (.NET)
+    require("neotest-dotnet"),
+
+    -- Java
+    require("neotest-java"),
   }
 end
 
@@ -200,6 +206,8 @@ return {
     "rouge8/neotest-rust",
     "nvim-neotest/neotest-jest",
     "alfaix/neotest-gtest",
+    "Issafalcon/neotest-dotnet",
+    "rcasia/neotest-java",
   },
   config = function()
     NeotestConfig.setup()

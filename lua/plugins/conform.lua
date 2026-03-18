@@ -40,6 +40,7 @@ return {
       yaml = { "yamlfmt" },
       xml = { "xmllint" },
       java = { "google-java-format" },
+      cs = { "csharpier" },
       go = { "gofumpt", "golines", "goimports-reviser" },
     },
 
