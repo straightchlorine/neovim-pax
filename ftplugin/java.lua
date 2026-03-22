@@ -15,7 +15,7 @@ local function discover_runtimes()
     if vim.fn.isdirectory(entry) == 1 then
       local name = vim.fn.fnamemodify(entry, ':t')
       local version = name:match('(%d+)')
-      if version then
+      if version and vim.uv.fs_stat(entry .. '/bin/javac') then
         table.insert(runtimes, {
           name = 'JavaSE-' .. version,
           path = entry .. '/',
@@ -44,6 +44,61 @@ local function discover_bundles()
   return bundles
 end
 
+-- Auto-generate Eclipse project files for plain Java projects (no Maven/Gradle)
+-- so jdtls can resolve source roots and packages correctly.
+local function ensure_eclipse_files(root)
+  if not root then return end
+
+  -- Skip if this is a build-tool project
+  for _, marker in ipairs({ 'pom.xml', 'build.gradle', 'build.gradle.kts', 'mvnw', 'gradlew' }) do
+    if vim.uv.fs_stat(root .. '/' .. marker) then return end
+  end
+
+  -- Find source directories
+  local src_dirs = {}
+  for _, candidate in ipairs({ 'src', 'source' }) do
+    if vim.uv.fs_stat(root .. '/' .. candidate) then
+      table.insert(src_dirs, candidate)
+    end
+  end
+  if #src_dirs == 0 then return end
+
+  -- Generate .classpath if missing
+  if not vim.uv.fs_stat(root .. '/.classpath') then
+    local entries = {}
+    for _, src in ipairs(src_dirs) do
+      table.insert(entries, ('  <classpathentry kind="src" path="%s"/>'):format(src))
+    end
+    local out = vim.uv.fs_stat(root .. '/out') and 'out' or 'bin'
+    table.insert(entries, ('  <classpathentry kind="output" path="%s"/>'):format(out))
+    table.insert(entries, '  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>')
+
+    local content = '<?xml version="1.0" encoding="UTF-8"?>\n<classpath>\n'
+      .. table.concat(entries, '\n') .. '\n</classpath>\n'
+    local f = io.open(root .. '/.classpath', 'w')
+    if f then f:write(content); f:close() end
+  end
+
+  -- Generate .project if missing
+  if not vim.uv.fs_stat(root .. '/.project') then
+    local name = vim.fn.fnamemodify(root, ':t')
+    local content = '<?xml version="1.0" encoding="UTF-8"?>\n'
+      .. '<projectDescription>\n'
+      .. '  <name>' .. name .. '</name>\n'
+      .. '  <buildSpec>\n'
+      .. '    <buildCommand>\n'
+      .. '      <name>org.eclipse.jdt.core.javabuilder</name>\n'
+      .. '    </buildCommand>\n'
+      .. '  </buildSpec>\n'
+      .. '  <natures>\n'
+      .. '    <nature>org.eclipse.jdt.core.javanature</nature>\n'
+      .. '  </natures>\n'
+      .. '</projectDescription>\n'
+    local f = io.open(root .. '/.project', 'w')
+    if f then f:write(content); f:close() end
+  end
+end
+
 local config = {
   cmd = {
     'java'                                                ,
@@ -60,7 +115,7 @@ local config = {
     '-configuration'                                     , mason .. '/jdtls/config_linux'     ,
     '-data'                                              , vim.fn.stdpath('cache') .. '/jdtls/workspace'
   },
-  root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
+  root_dir = require('jdtls.setup').find_root({'pom.xml', 'build.gradle', 'mvnw', 'gradlew', '.iml', 'build.xml', '.git'}),
   settings = {
     java = {
       configuration = {
@@ -73,6 +128,7 @@ local config = {
   },
 }
 
+ensure_eclipse_files(config.root_dir)
 require('jdtls').start_or_attach(config)
 
 -- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80

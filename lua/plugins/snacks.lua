@@ -36,6 +36,7 @@ return {
         },
       },
     },
+    explorer = { enabled = true },
     quickfile = { enabled = true },
     rename = { enabled = true },
     scope = { enabled = false },
@@ -120,6 +121,8 @@ return {
     { "<leader>fT", function() Snacks.terminal(nil, { win = { position = "bottom" } }) end, desc = "terminal: toggle bottom split" },
     { "<c-/>", function() Snacks.terminal() end, desc = "terminal: toggle floating", mode = { "n", "t" } },
     { "<c-_>", function() Snacks.terminal() end, desc = "terminal: toggle floating (which-key)", mode = { "n", "t" } }, -- <c-/> sometimes shows as <c-_>
+    -- explorer
+    { "<leader>e", function() Snacks.explorer() end, desc = "explorer: file tree" },
     --stylua: ignore end
   },
 }
