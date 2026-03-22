@@ -149,23 +149,24 @@ end
 function DAPConfig.setup_languages()
   local dap = require("dap")
 
-  --- Setup Python debugger with venv detection
+  --- Setup Python debugger using Mason's debugpy
   local function setup_python()
-    -- Use the comprehensive venv detection from lspconfig
-    local python_path = "python3"
+    local debugpy = vim.fn.stdpath('data') .. '/mason/packages/debugpy/venv/bin/python'
+    require("dap-python").setup(debugpy)
 
-    if _G.get_python_path then
-      local workspace = vim.fn.getcwd()
-      python_path = _G.get_python_path(workspace)
-    else
-      if vim.env.VIRTUAL_ENV then
-        python_path = vim.env.VIRTUAL_ENV .. "/bin/python3"
-      else
-        python_path = vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+    -- Ensure the debugged program runs in the project's venv
+    local function resolve_python()
+      if _G.get_python_path then
+        return _G.get_python_path(vim.fn.getcwd())
+      elseif vim.env.VIRTUAL_ENV then
+        return vim.env.VIRTUAL_ENV .. "/bin/python3"
       end
+      return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
     end
 
-    require("dap-python").setup(python_path)
+    for _, config in ipairs(require("dap").configurations.python) do
+      config.pythonPath = resolve_python
+    end
   end
 
   --- Setup Java test debugging with JDTLS
