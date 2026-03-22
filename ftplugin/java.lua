@@ -99,36 +99,43 @@ local function ensure_eclipse_files(root)
   end
 end
 
+local root_dir = require('jdtls.setup').find_root({'pom.xml', 'build.gradle', 'mvnw', 'gradlew', '.iml', 'build.xml', '.git'})
+
+-- Per-project workspace data directory to avoid stale/conflicting metadata
+local project_name = root_dir and vim.fn.fnamemodify(root_dir, ':t') or 'default'
+local data_dir = vim.fn.stdpath('cache') .. '/jdtls/' .. project_name
+
+ensure_eclipse_files(root_dir)
+
 local config = {
   cmd = {
-    'java'                                                ,
-    '-Declipse.application=org.eclipse.jdt.ls.core.id1'  ,
-    '-Dosgi.bundles.defaultStartLevel=4'                 ,
-    '-Declipse.product=org.eclipse.jdt.ls.core.product'  ,
-    '-Dlog.protocol=true'                                ,
-    '-Dlog.level=ALL'                                    ,
-    '-Xmx1g'                                             ,
-    '--add-modules=ALL-SYSTEM'                           ,
-    '--add-opens'                                        , 'java.base/java.util=ALL-UNNAMED'  ,
-    '--add-opens'                                        , 'java.base/java.lang=ALL-UNNAMED'  ,
-    '-jar'                                               , vim.fn.glob(mason .. '/jdtls/plugins/org.eclipse.equinox.launcher_*.jar') ,
-    '-configuration'                                     , mason .. '/jdtls/config_linux'     ,
-    '-data'                                              , vim.fn.stdpath('cache') .. '/jdtls/workspace'
+    'java',
+    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+    '-Dosgi.bundles.defaultStartLevel=4',
+    '-Declipse.product=org.eclipse.jdt.ls.core.product',
+    '-Dlog.protocol=true',
+    '-Dlog.level=ALL',
+    '-Xmx1g',
+    '--add-modules=ALL-SYSTEM',
+    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+    '-jar', vim.fn.glob(mason .. '/jdtls/plugins/org.eclipse.equinox.launcher_*.jar'),
+    '-configuration', mason .. '/jdtls/config_linux',
+    '-data', data_dir,
   },
-  root_dir = require('jdtls.setup').find_root({'pom.xml', 'build.gradle', 'mvnw', 'gradlew', '.iml', 'build.xml', '.git'}),
+  root_dir = root_dir,
   settings = {
     java = {
       configuration = {
-        runtimes = discover_runtimes()
-      }
-    }
+        runtimes = discover_runtimes(),
+      },
+    },
   },
   init_options = {
-    bundles = discover_bundles()
+    bundles = discover_bundles(),
   },
 }
 
-ensure_eclipse_files(config.root_dir)
 require('jdtls').start_or_attach(config)
 
 -- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80

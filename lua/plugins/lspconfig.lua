@@ -258,13 +258,14 @@ return {
             useLibraryCodeForTypes = true,
             autoImportCompletions = true,
             diagnosticMode = "workspace",
-          },
-          diagnostics = {
             reportMissingImports = true,
             reportMissingTypeStubs = false,
             reportImportCycles = false,
             reportUnusedImport = "information",
             reportUnusedVariable = "information",
+            -- SQLAlchemy/SQLModel false-positive mitigation
+            reportAssignmentType = "warning",
+            reportAttributeAccessIssue = "warning",
           },
         },
       },
