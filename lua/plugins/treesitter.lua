@@ -3,6 +3,7 @@
 
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "master", -- pin to master; main branch is an incompatible rewrite
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
@@ -18,7 +19,6 @@ return {
         additional_vim_regex_highlighting = false,
       },
       indent = { enable = true },
-      autotag = { enable = true },
 
       auto_install = true,
 
@@ -114,6 +114,9 @@ return {
         },
       },
     })
+
+    -- Configure nvim-ts-autotag (standalone setup, not via treesitter opts)
+    require("nvim-ts-autotag").setup()
 
     -- Configure ts_context_commentstring for mini.comment integration
     require("ts_context_commentstring").setup({

@@ -3,6 +3,7 @@
 
 return {
   "nvim-treesitter/nvim-treesitter-textobjects",
+  branch = "master", -- pin to master; main branch is an incompatible rewrite
   event = "VeryLazy",
   enabled = true,
   config = function()

@@ -2,7 +2,7 @@
 -- https://github.com/nvim-flutter/flutter-tools.nvim
 
 return {
-  "akinsho/flutter-tools.nvim",
+  "nvim-flutter/flutter-tools.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },

@@ -9,7 +9,7 @@ return {
     {
       "<leader>f",
       function()
-        require("conform").format({ async = true, lsp_fallback = true })
+        require("conform").format({ async = true, lsp_format = "fallback" })
       end,
       desc = "format: buffer",
       mode = { "n", "v" },
@@ -46,7 +46,7 @@ return {
 
     format_on_save = {
       timeout_ms = 500,
-      lsp_fallback = true,
+      lsp_format = "fallback",
     },
 
     -- stop after first success
@@ -54,7 +54,7 @@ return {
       timeout_ms = 500,
       async = true,
       quiet = false,
-      lsp_fallback = true,
+      lsp_format = "fallback",
     },
 
     notify_on_error = true,

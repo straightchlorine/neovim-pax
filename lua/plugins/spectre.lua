@@ -1,43 +1,39 @@
--- nvim-spectre
--- https://github.com/nvim-pack/nvim-spectre
+-- grug-far.nvim (replaces nvim-spectre)
+-- https://github.com/MagicDuck/grug-far.nvim
 
 return {
-  "nvim-pack/nvim-spectre",
-  build = false,
-  cmd = "Spectre",
-  opts = { open_cmd = "noswapfile vnew" },
+  "MagicDuck/grug-far.nvim",
+  cmd = "GrugFar",
   keys = {
     {
       "<leader>sr",
       function()
-        require("spectre").toggle()
+        require("grug-far").open()
       end,
-      desc = "spectre: replace in files (spectre)",
+      desc = "grug-far: search and replace",
     },
     {
       "<leader>sw",
       function()
-        require("spectre").open_visual({ select_word = true })
+        require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
       end,
-      desc = "spectre: search current word",
+      desc = "grug-far: search current word",
     },
     {
       "<leader>sw",
       function()
-        require("spectre").open_visual()
+        require("grug-far").with_visual_selection()
       end,
       mode = "v",
-      desc = "spectre: search current word",
+      desc = "grug-far: search selection",
     },
     {
       "<leader>sf",
       function()
-        require("spectre").open_file_search({ select_word = true })
+        require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
       end,
-      desc = "spectre: search on current file",
+      desc = "grug-far: search in current file",
     },
   },
-  config = function(_, opts)
-    require("spectre").setup(opts)
-  end,
+  opts = {},
 }
