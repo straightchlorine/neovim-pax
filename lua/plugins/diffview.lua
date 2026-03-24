@@ -21,6 +21,20 @@ return {
           require("diffview.config").actions.conflict_choose("all")
         end,
       },
+      file_panel = {
+        ["<leader>co"] = function()
+          require("diffview.config").actions.conflict_choose("ours")
+        end,
+        ["<leader>ct"] = function()
+          require("diffview.config").actions.conflict_choose("theirs")
+        end,
+        ["<leader>cb"] = function()
+          require("diffview.config").actions.conflict_choose("base")
+        end,
+        ["<leader>ca"] = function()
+          require("diffview.config").actions.conflict_choose("all")
+        end,
+      },
     },
   },
 }

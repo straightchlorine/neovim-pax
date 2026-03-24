@@ -11,11 +11,16 @@ return {
   keys = {
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "neogit: open status" },
     { "<leader>gc", "<cmd>Neogit commit<cr>", desc = "neogit: commit" },
+    { "<leader>gC", function()
+      vim.cmd("split | terminal git commit --no-verify")
+    end, desc = "neogit: commit (no-verify)" },
     { "<leader>gp", "<cmd>Neogit pull<cr>", desc = "neogit: pull" },
     { "<leader>gP", "<cmd>Neogit push<cr>", desc = "neogit: push" },
     { "<leader>gf", "<cmd>Neogit fetch<cr>", desc = "neogit: fetch" },
     { "<leader>gl", "<cmd>Neogit log<cr>", desc = "neogit: log" },
     { "<leader>gn", "<cmd>Neogit branch<cr>", desc = "neogit: branch" },
+    { "<leader>gm", "<cmd>Neogit merge<cr>", desc = "neogit: merge" },
+    { "<leader>gr", "<cmd>Neogit rebase<cr>", desc = "neogit: rebase" },
   },
   config = function()
     require("neogit").setup({

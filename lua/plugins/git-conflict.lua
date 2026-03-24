@@ -1,6 +1,9 @@
 return {
   "akinsho/git-conflict.nvim",
   event = "BufReadPost",
+  keys = {
+    { "<leader>gx", "<cmd>GitConflictListQf<cr>", desc = "git-conflict: list all conflicts" },
+  },
   opts = {
     default_mappings = {
       ours = "co",
