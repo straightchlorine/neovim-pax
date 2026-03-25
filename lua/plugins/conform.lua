@@ -1,4 +1,4 @@
--- conform.vnim
+-- conform.nvim
 -- https://github.com/stevearc/conform.nvim
 
 return {

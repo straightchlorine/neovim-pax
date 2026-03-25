@@ -6,33 +6,33 @@ return {
   cmd = "GrugFar",
   keys = {
     {
-      "<leader>sr",
+      "<leader>rr",
       function()
         require("grug-far").open()
       end,
       desc = "grug-far: search and replace",
     },
     {
-      "<leader>sw",
+      "<leader>rw",
       function()
         require("grug-far").open({ prefills = { search = vim.fn.expand("<cword>") } })
       end,
-      desc = "grug-far: search current word",
+      desc = "grug-far: replace current word",
     },
     {
-      "<leader>sw",
+      "<leader>rw",
       function()
         require("grug-far").with_visual_selection()
       end,
       mode = "v",
-      desc = "grug-far: search selection",
+      desc = "grug-far: replace selection",
     },
     {
-      "<leader>sf",
+      "<leader>rf",
       function()
         require("grug-far").open({ prefills = { paths = vim.fn.expand("%") } })
       end,
-      desc = "grug-far: search in current file",
+      desc = "grug-far: replace in current file",
     },
   },
   opts = {},

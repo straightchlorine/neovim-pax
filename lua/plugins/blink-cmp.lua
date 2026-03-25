@@ -22,21 +22,18 @@ return {
   },
   opts = {
     keymap = {
-      preset = "default",
-      ["<C-k>"] = { "select_prev", "fallback" },
-      ["<C-j>"] = { "select_next", "fallback" },
+      preset = "none",
+      ["<C-n>"] = { "show", "select_next", "fallback" },
+      ["<C-p>"] = { "show", "select_prev", "fallback" },
+      ["<C-y>"] = { "select_and_accept" },
+      ["<C-e>"] = { "cancel", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
       ["<C-b>"] = { "scroll_documentation_up", "fallback" },
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-      ["<C-e>"] = { "hide", "fallback" },
-      ["<CR>"] = { "accept", "fallback" },
-      
-      ["<Tab>"] = {
-        "snippet_forward",
-        "select_and_accept",
-        "fallback",
-      },
-      ["<S-Tab>"] = { "snippet_backward", "fallback" },
+      ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
     },
 
     appearance = {
@@ -57,11 +54,15 @@ return {
 
     sources = {
       default = { "lsp", "path", "snippets", "buffer", "copilot" },
+      min_keyword_length = 2,
       providers = {
+        lsp = {
+          min_keyword_length = 0,
+        },
         copilot = {
           name = "copilot",
           module = "blink-cmp-copilot",
-          score_offset = 100,
+          score_offset = 0,
           async = true,
           transform_items = function(_, items)
             local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
@@ -77,20 +78,39 @@ return {
     },
 
     completion = {
+      trigger = {
+        show_on_keyword = true,
+        show_on_trigger_character = true,
+      },
+
+      list = {
+        selection = {
+          preselect = false,
+          auto_insert = false,
+        },
+      },
+
       accept = {
         create_undo_point = true,
         auto_brackets = {
           enabled = true,
         },
       },
-      
+
       menu = {
-        border = "rounded",
+        auto_show = true,
+        border = "none",
         draw = {
           columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
         },
       },
-      
+
+      ghost_text = {
+        enabled = true,
+        show_with_selection = true,
+        show_without_selection = false,
+      },
+
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 500,

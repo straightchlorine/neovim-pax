@@ -61,7 +61,6 @@ vim.o.syntax = "ON"
 vim.o.magic = true
 vim.o.hidden = true
 vim.o.wildmenu = true
-vim.o.completeopt = "menu,noselect,preview"
 vim.o.complete = ".,w,b,k"
 
 vim.o.errorbells = true
@@ -118,16 +117,11 @@ vim.o.breakat = [[\ \	;:,!?]]
 vim.opt.wildignore:append({ "*.pyc", "node_modules", ".git" })
 vim.opt.formatoptions:append({ "tcraj" })
 
--- Plugin related options
-vim.g.matchup_matchparen_offset = { method = "popup" }
-
 vim.o.list = false
-vim.opt.listchars:append("space:⋅")
-vim.opt.listchars:append("eol:↴")
 
 vim.o.foldcolumn = "1"
 vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 
--- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=4:softtabstop=2:textwidth=80
+-- vim: filetype=lua:expandtab:shiftwidth=2:tabstop=2:softtabstop=2:textwidth=80
