@@ -111,6 +111,16 @@ return {
           },
         },
       },
+      arduino_language_server = {
+        capabilities = capabilities,
+        cmd = {
+          "arduino-language-server",
+          "-cli-config", vim.fn.expand("~/.arduino15/arduino-cli.yaml"),
+          "-clangd", "clangd",
+        },
+        filetypes = { "arduino" },
+        root_markers = { "*.ino", "sketch.yaml", ".git" },
+      },
       clangd = {
         capabilities = capabilities,
         cmd = { "clangd", "--background-index" },

@@ -2,7 +2,12 @@
 -- Gathers all vim options.
 ---
 
-vim.filetype.add({ extension = { mdx = "markdown" } })
+vim.filetype.add({
+  extension = {
+    mdx = "markdown",
+    ino = "arduino",
+  },
+})
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
