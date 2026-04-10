@@ -29,7 +29,17 @@ return {
       map("n", "<leader>hs", gs.stage_hunk, "stage hunk")
       map("n", "<leader>hu", gs.undo_stage_hunk, "undo stage hunk")
       map("n", "<leader>gr", gs.reset_hunk, "reset hunk")
-      map("n", "<leader>gS", gs.stage_buffer, "stage buffer")
+      map("n", "<leader>gS", function()
+        local file = vim.api.nvim_buf_get_name(bufnr)
+        if file == "" then return end
+        local result = vim.fn.system({ "git", "ls-files", "--error-unmatch", file })
+        if vim.v.shell_error ~= 0 then
+          vim.fn.system({ "git", "add", file })
+          vim.notify("Added untracked file to index", vim.log.levels.INFO)
+        else
+          gs.stage_buffer()
+        end
+      end, "stage buffer")
       map("n", "<leader>gR", gs.reset_buffer, "reset buffer")
 
       map("v", "<leader>gs", function()
