@@ -8,16 +8,6 @@ return {
     require("mini.ai").setup()
     require("mini.bracketed").setup()
     require("mini.clue").setup()
-
-    -- Treesitter-aware commenting
-    require("mini.comment").setup({
-      options = {
-        custom_commentstring = function()
-          return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
-        end,
-      },
-    })
-
     require("mini.cursorword").setup()
     require("mini.trailspace").setup()
     require("mini.pairs").setup()
@@ -50,11 +40,11 @@ return {
 
     require("mini.hipatterns").setup({
       highlighters = {
-        fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-        hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
-        todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
-        note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
-        hex_color = require('mini.hipatterns').gen_highlighter.hex_color(),
+        fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+        hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+        todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+        note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+        hex_color = require("mini.hipatterns").gen_highlighter.hex_color(),
       },
     })
   end,

@@ -21,6 +21,7 @@ return {
       typescript = { "prettierd", "prettier" },
       jsx = { "prettierd", "prettier" },
       tsx = { "prettierd", "prettier" },
+      vue = { "prettierd", "prettier" },
       html = { "prettierd", "prettier" },
       css = { "prettierd", "prettier" },
       scss = { "prettierd", "prettier" },

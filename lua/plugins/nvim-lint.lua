@@ -34,6 +34,7 @@ return {
     lint.linters.luacheck.args = {
       "--globals",
       "vim",
+      "Snacks",
       "describe",
       "it",
       "before_each",

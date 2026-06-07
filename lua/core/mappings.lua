@@ -20,8 +20,6 @@ keymap.set("n", "<leader>hh", "<C-w>s", { desc = "split: window horizontally" })
 
 keymap.set("n", "<leader>tbo", "<cmd>tabnew<CR>", { desc = "tab: open new tab" })
 keymap.set("n", "<leader>tbx", "<cmd>tabclose<CR>", { desc = "tab: close current tab" })
-keymap.set("n", "<leader>tbn", "<cmd>tabn<CR>", { desc = "tab: go to next tab" })
-keymap.set("n", "<leader>tbp", "<cmd>tabp<CR>", { desc = "tab: go to previous tab" })
 keymap.set("n", "<leader>tbf", "<cmd>tabnew %<CR>", { desc = "tab: open current buffer in new tab" })
 
 keymap.set("n", "<A-,>", "<cmd>bprevious<CR>", { desc = "buffer: move to previous buffer" })
