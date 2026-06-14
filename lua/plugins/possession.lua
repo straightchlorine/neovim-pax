@@ -3,6 +3,7 @@
 
 return {
   "jedrzejboczar/possession.nvim",
+  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
@@ -16,9 +17,9 @@ return {
       prompt_no_cr = false,
       autosave = {
         current = true, -- autosave current session
-        tmp = false,     -- autosave tmp session (last session before quit)
+        tmp = false, -- autosave tmp session (last session before quit)
         tmp_name = "tmp",
-        on_load = true,  -- autosave on session load
+        on_load = true, -- autosave on session load
         on_quit = true,
       },
       commands = {
@@ -32,15 +33,19 @@ return {
         migrate = "PossessionMigrate",
       },
       hooks = {
-        before_save = function(name) return {} end,
+        before_save = function(name)
+          return {}
+        end,
         after_save = function(name, user_data, aborted) end,
-        before_load = function(name, user_data) return user_data end,
+        before_load = function(name, user_data)
+          return user_data
+        end,
         after_load = function(name, user_data) end,
       },
       plugins = {
         close_windows = {
-          hooks = {"before_save", "before_load"},
-          preserve_layout = true,  -- don't delete empty windows
+          hooks = { "before_save", "before_load" },
+          preserve_layout = true, -- don't delete empty windows
           match = {
             floating = true,
             buftype = {},

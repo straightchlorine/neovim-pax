@@ -9,15 +9,18 @@ vim.filetype.add({
   },
 })
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- Provider configuration
 vim.g.python3_host_prog = "/usr/bin/python"
-vim.g.loaded_perl_provider = 0  -- Disable Perl provider (unused)
-vim.g.loaded_ruby_provider = 0  -- Disable Ruby provider (unused)
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+-- Disable unused built-in runtime plugins
+vim.g.loaded_tutor_mode_plugin = 1
+vim.g.loaded_remote_plugins = 1
 
 vim.o.termguicolors = true
+vim.o.background = "dark"
+vim.cmd.colorscheme("retrobox")
 vim.o.redrawtime = 1500
 vim.o.colorcolumn = "80,100"
 

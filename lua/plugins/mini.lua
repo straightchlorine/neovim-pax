@@ -7,7 +7,6 @@ return {
   config = function()
     require("mini.ai").setup()
     require("mini.bracketed").setup()
-    require("mini.clue").setup()
     require("mini.cursorword").setup()
     require("mini.trailspace").setup()
     require("mini.pairs").setup()

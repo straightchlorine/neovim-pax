@@ -14,7 +14,11 @@ return {
     vim.o.winborder = "none"
 
     vim.diagnostic.config({
-      jump = { float = true },
+      jump = {
+        on_jump = function(_, bufnr)
+          vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+        end,
+      },
       float = { border = "none" },
     })
 
@@ -24,11 +28,9 @@ return {
         local opts = { buffer = ev.buf, silent = true }
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
 
-        -- Formatting is handled by conform.nvim with lsp_format = "fallback":
-        -- conform's own formatters run for configured filetypes, LSP formats the
-        -- rest. We do NOT disable LSP formatting here -- that would kill the
-        -- fallback (and conform never double-formats: it only calls LSP when it
-        -- has no formatter for the filetype).
+        -- Formatting is handled by conform.nvim with lsp_format = "fallback".
+        -- Conform's own formatters run for configured filetypes, LSP formats the
+        -- rest.
 
         opts.desc = "lsp: code actions"
         keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
@@ -82,9 +84,6 @@ return {
     end
 
     local servers = {
-      vale_ls = {
-        filetypes = { "markdown" },
-      },
       lua_ls = {
         capabilities = capabilities,
         settings = {

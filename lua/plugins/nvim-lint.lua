@@ -15,9 +15,7 @@ return {
       c = { "cpplint" },
       cpp = { "cpplint" },
       arduino = { "cpplint" },
-      git = { "gitlint" },
-      lua = { "luacheck", "selene" },
-      json = { "jsonlint" },
+      lua = { "luacheck" },
       yaml = { "yamllint" },
       vhdl = { "ghdl" },
       html = { "tidy" },
@@ -75,7 +73,7 @@ return {
       end, debounce_ms)
     end
 
-    vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" }, {
+    vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
       group = lint_augroup,
       callback = schedule_lint,
     })
@@ -88,7 +86,7 @@ return {
     vim.api.nvim_create_user_command("LintStart", function()
       vim.api.nvim_clear_autocmds({ group = lint_augroup })
 
-      vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave", "TextChanged" }, {
+      vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
         group = lint_augroup,
         callback = schedule_lint,
       })

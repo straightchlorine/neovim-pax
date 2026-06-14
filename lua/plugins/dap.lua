@@ -116,7 +116,8 @@ function DAPConfig.setup_mappings()
   keymap.set("n", "<Leader>cb", dap.clear_breakpoints, { desc = "debug: clear all breakpoints" })
 
   keymap.set("n", "<Leader>dr", dap.repl.open, { desc = "debug: open REPL" })
-  keymap.set("n", "<Leader>rr", dap.run_last, { desc = "debug: run last" })
+  -- Kept inside the debug namespace (was a stray <Leader>rr).
+  keymap.set("n", "<Leader>dC", dap.run_last, { desc = "debug: run last" })
   keymap.set({ "n", "v" }, "<Leader>dp", function()
     require("dap.ui.widgets").preview()
   end, { desc = "debug: preview" })
@@ -288,12 +289,12 @@ end
 
 return {
   "mfussenegger/nvim-dap",
+  event = "VeryLazy", -- was loading at startup; defer past first paint
   dependencies = {
     "nvim-neotest/nvim-nio",
     "theHamsta/nvim-dap-virtual-text",
     "rcarriga/nvim-dap-ui",
     "mfussenegger/nvim-jdtls",
-    "jayp0521/mason-nvim-dap.nvim",
     "mfussenegger/nvim-dap-python",
   },
   config = function()

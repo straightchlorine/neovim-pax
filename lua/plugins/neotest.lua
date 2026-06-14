@@ -96,7 +96,7 @@ function NeotestConfig.setup_keymaps()
     neotest.watch.toggle()
   end, { desc = "neotest: toggle watch mode" })
 
-  keymap.set("n", "<leader>twf", function()
+  keymap.set("n", "<leader>tW", function()
     neotest.watch.toggle(vim.fn.expand("%"))
   end, { desc = "neotest: toggle watch file" })
 
@@ -208,6 +208,20 @@ return {
     "alfaix/neotest-gtest",
     "Issafalcon/neotest-dotnet",
     "rcasia/neotest-java",
+  },
+  keys = {
+    { "<leader>tr", desc = "neotest: run nearest test" },
+    { "<leader>tf", desc = "neotest: run file tests" },
+    { "<leader>td", desc = "neotest: debug nearest test" },
+    { "<leader>tl", desc = "neotest: run last test" },
+    { "<leader>ts", desc = "neotest: stop tests" },
+    { "<leader>tw", desc = "neotest: toggle watch mode" },
+    { "<leader>tW", desc = "neotest: toggle watch file" },
+    { "<leader>to", desc = "neotest: open output" },
+    { "<leader>tO", desc = "neotest: toggle output panel" },
+    { "<leader>tj", desc = "neotest: jump to next failed" },
+    { "<leader>tk", desc = "neotest: jump to prev failed" },
+    { "<A-t>", desc = "neotest: toggle summary" },
   },
   config = function()
     NeotestConfig.setup()

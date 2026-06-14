@@ -3,6 +3,7 @@
 
 return {
   "vuki656/package-info.nvim",
+  ft = "json", -- only relevant in package.json; was loading at startup
   dependencies = "MunifTanjim/nui.nvim",
   opts = {},
   config = function(_, opts)

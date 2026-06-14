@@ -7,18 +7,6 @@ return {
   event = "InsertEnter",
   dependencies = {
     "L3MON4D3/LuaSnip",
-    {
-      "zbirenbaum/copilot.lua",
-      config = function()
-        require("copilot").setup({
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-        })
-      end,
-    },
-    {
-      "giuxtaposition/blink-cmp-copilot",
-    },
   },
   opts = {
     keymap = {
@@ -53,26 +41,11 @@ return {
     },
 
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "copilot" },
+      default = { "lsp", "path", "snippets", "buffer" },
       min_keyword_length = 2,
       providers = {
         lsp = {
           min_keyword_length = 0,
-        },
-        copilot = {
-          name = "copilot",
-          module = "blink-cmp-copilot",
-          score_offset = 0,
-          async = true,
-          transform_items = function(_, items)
-            local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-            local kind_idx = #CompletionItemKind + 1
-            CompletionItemKind[kind_idx] = "Copilot"
-            for _, item in ipairs(items) do
-              item.kind = kind_idx
-            end
-            return items
-          end,
         },
       },
     },

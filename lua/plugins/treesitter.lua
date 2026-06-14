@@ -8,14 +8,14 @@ return {
   branch = "main",
   lazy = false,
   build = ":TSUpdate",
-  dependencies = {
-    "windwp/nvim-ts-autotag",
-  },
   config = function()
     local ts = require("nvim-treesitter")
 
     -- Arduino .ino files are C++
     vim.treesitter.language.register("cpp", "arduino")
+    vim.treesitter.language.register("ssh_config", "sshconfig")
+    vim.treesitter.language.register("git_config", "gitconfig")
+    vim.treesitter.language.register("ini", { "dosini", "confini" })
 
     local ensure_installed = {
       "bash",
@@ -23,9 +23,14 @@ return {
       "cpp",
       "c_sharp",
       "css",
+      "diff",
       "dockerfile",
+      "gitattributes",
       "gitcommit",
+      "git_config",
       "gitignore",
+      "ini",
+      "ssh_config",
       "go",
       "html",
       "java",
@@ -68,7 +73,5 @@ return {
         vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
     })
-
-    require("nvim-ts-autotag").setup()
   end,
 }

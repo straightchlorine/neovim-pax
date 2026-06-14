@@ -25,7 +25,7 @@ return {
       ext_opts = {
         [require("luasnip.util.types").choiceNode] = {
           active = {
-            virt_text = { { "●", "GruvboxOrange" } },
+            virt_text = { { "●", "DiagnosticWarn" } },
           },
         },
       },

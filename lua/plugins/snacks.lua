@@ -44,8 +44,12 @@ return {
     statuscolumn = { enabled = true },
     terminal = {
       enabled = true,
+      start_insert = true, -- insert mode when a terminal is first opened
+      auto_insert = true, -- insert mode whenever you re-enter the terminal buffer
+      auto_close = true, -- wipe the buffer when the shell/process exits
       win = {
         style = "terminal",
+        border = "rounded",
       },
     },
     toggle = { enabled = true, notify = true, which_key = true },
@@ -108,7 +112,7 @@ return {
     { "<leader>sR", function() Snacks.picker.resume() end, desc = "search: resume" },
     { "<leader>su", function() Snacks.picker.undo() end, desc = "search: undo history" },
     { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "ui: colorschemes" },
-    -- lsp (these override the lspconfig mappings to use snacks picker)
+    -- lsp navigation via snacks picker
     { "gd", function() Snacks.picker.lsp_definitions() end, desc = "lsp: goto definition" },
     { "gD", function() Snacks.picker.lsp_declarations() end, desc = "lsp: goto declaration" },
     { "gR", function() Snacks.picker.lsp_references() end, nowait = true, desc = "lsp: references"  },
@@ -117,10 +121,11 @@ return {
     { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "lsp: symbols" },
     { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "lsp: workspace symbols" },
     -- terminal
-    { "<leader>ft", function() Snacks.terminal() end, desc = "terminal: toggle floating" },
+    { "<leader>ft", function() Snacks.terminal(nil, { win = { position = "float" } }) end, desc = "terminal: toggle float" },
     { "<leader>fT", function() Snacks.terminal(nil, { win = { position = "bottom" } }) end, desc = "terminal: toggle bottom split" },
-    { "<c-/>", function() Snacks.terminal() end, desc = "terminal: toggle floating", mode = { "n", "t" } },
-    { "<c-_>", function() Snacks.terminal() end, desc = "terminal: toggle floating (which-key)", mode = { "n", "t" } }, -- <c-/> sometimes shows as <c-_>
+    { "<c-/>", function() Snacks.terminal(nil, { win = { position = "float" } }) end, desc = "terminal: toggle float", mode = { "n", "t" } },
+    { "<c-_>", function() Snacks.terminal(nil, { win = { position = "float" } }) end, desc = "terminal: toggle float (<c-/> alias)", mode = { "n", "t" } }, -- <c-/> sometimes arrives as <c-_>
+    { "<leader>cc", function() Snacks.terminal("claude", { win = { position = "right", width = 0.45 } }) end, desc = "terminal: toggle claude code" },
     -- explorer
     { "<leader>e", function() Snacks.explorer() end, desc = "explorer: file tree" },
     --stylua: ignore end

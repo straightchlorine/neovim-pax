@@ -46,7 +46,7 @@ return {
   keys = {
     -- stylua: ignore start
     { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "flash: jump" },
-    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "flash: treesitter" },
+    { "S", mode = { "n", "o" }, function() require("flash").treesitter() end, desc = "flash: treesitter (visual S left for surround)" },
     { "r", mode = "o", function() require("flash").remote() end, desc = "flash: remote" },
     { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "flash: treesitter search" },
     { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "flash: toggle search" },

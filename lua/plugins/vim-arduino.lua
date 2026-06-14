@@ -3,15 +3,30 @@
 
 return {
   "stevearc/vim-arduino",
+  ft = "arduino",
   config = function()
-    local keymap = vim.keymap
+    local function attach(buf)
+      local function map(lhs, rhs, desc)
+        vim.keymap.set("n", lhs, rhs, { buffer = buf, desc = desc })
+      end
+      map("<leader>aa", "<cmd>ArduinoAttach<CR>", "arduino: attach")
+      map("<leader>av", "<cmd>ArduinoVerify<CR>", "arduino: verify")
+      map("<leader>au", "<cmd>ArduinoUpload<CR>", "arduino: upload")
+      map("<leader>aS", "<cmd>ArduinoUploadAndSerial<CR>", "arduino: upload and serial")
+      map("<leader>as", "<cmd>ArduinoSerial<CR>", "arduino: serial")
+      map("<leader>ab", "<cmd>ArduinoChooseBoard<CR>", "arduino: board")
+      map("<leader>ap", "<cmd>ArduinoChooseProgrammer<CR>", "arduino: programmer")
+    end
 
-    keymap.set("n", "<leader>aa", "<cmd>ArduinoAttach<CR>", { desc = "arduino: attach" })
-    keymap.set("n", "<leader>av", "<cmd>ArduinoVerify<CR>", { desc = "arduino: verify" })
-    keymap.set("n", "<leader>au", "<cmd>ArduinoUpload<CR>", { desc = "arduino: upload" })
-    keymap.set("n", "<leader>aus", "<cmd>ArduinoUploadAndSerial<CR>", { desc = "arduino: upload and serial" })
-    keymap.set("n", "<leader>as", "<cmd>ArduinoSerial<CR>", { desc = "arduino: serial" })
-    keymap.set("n", "<leader>ab", "<cmd>ArduinoChooseBoard<CR>", { desc = "arduino: board" })
-    keymap.set("n", "<leader>ap", "<cmd>ArduinoChooseProgrammer<CR>", { desc = "arduino: programmer" })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("ArduinoMaps", { clear = true }),
+      pattern = "arduino",
+      callback = function(ev)
+        attach(ev.buf)
+      end,
+    })
+    if vim.bo.filetype == "arduino" then
+      attach(0)
+    end
   end,
 }
