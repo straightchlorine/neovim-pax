@@ -20,7 +20,7 @@ vim.g.loaded_remote_plugins = 1
 
 vim.o.termguicolors = true
 vim.o.background = "dark"
-vim.cmd.colorscheme("retrobox")
+vim.cmd.colorscheme("default")
 vim.o.redrawtime = 1500
 vim.o.colorcolumn = "80,100"
 

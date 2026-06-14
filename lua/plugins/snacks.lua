@@ -63,6 +63,7 @@ return {
     vim.ui.input = Snacks.input
     vim.notify = Snacks.notifier
   end,
+
   keys = {
     -- stylua: ignore start
     -- pickers
