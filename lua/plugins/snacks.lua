@@ -126,7 +126,9 @@ return {
     { "<leader>fT", function() Snacks.terminal(nil, { win = { position = "bottom" } }) end, desc = "terminal: toggle bottom split" },
     { "<c-/>", function() Snacks.terminal(nil, { win = { position = "float" } }) end, desc = "terminal: toggle float", mode = { "n", "t" } },
     { "<c-_>", function() Snacks.terminal(nil, { win = { position = "float" } }) end, desc = "terminal: toggle float (<c-/> alias)", mode = { "n", "t" } }, -- <c-/> sometimes arrives as <c-_>
-    { "<leader>cc", function() Snacks.terminal("claude", { win = { position = "right", width = 0.45 } }) end, desc = "terminal: toggle claude code" },
+    { "<leader>cc", function() Snacks.terminal("claude", { count = 1, win = { position = "right", width = 0.45 } }) end, desc = "terminal: toggle claude code #1" },
+    { "<leader>cC", function() Snacks.terminal("claude", { count = 2, win = { position = "right", width = 0.45 } }) end, desc = "terminal: toggle claude code #2" },
+    { "<leader>cn", function() Snacks.terminal("claude", { count = vim.v.count1, win = { position = "float" } }) end, desc = "terminal: claude code #N (float, count-prefix)" },
     -- explorer
     { "<leader>e", function() Snacks.explorer() end, desc = "explorer: file tree" },
     --stylua: ignore end

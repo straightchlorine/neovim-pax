@@ -10,6 +10,21 @@ return {
   cmd = "Neogit",
   keys = {
     { "<leader>gg", "<cmd>Neogit<cr>", desc = "neogit: open status" },
+    { "<leader>ga", function()
+      local file = vim.api.nvim_buf_get_name(0)
+      if file == "" then
+        vim.notify("No file in buffer", vim.log.levels.WARN)
+        return
+      end
+      local out = vim.fn.system({ "git", "add", "--", file })
+      if vim.v.shell_error ~= 0 then
+        vim.notify("git add failed: " .. out, vim.log.levels.ERROR)
+        return
+      end
+      vim.notify("git add: " .. vim.fn.fnamemodify(file, ":."), vim.log.levels.INFO)
+      pcall(function() require("gitsigns").refresh() end)
+      pcall(function() require("neogit").refresh() end)
+    end, desc = "git: add current file (whole buffer)" },
     { "<leader>gc", "<cmd>Neogit commit<cr>", desc = "neogit: commit" },
     { "<leader>gC", function()
       vim.cmd("split | terminal git commit --no-verify")
