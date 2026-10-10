@@ -39,10 +39,7 @@ function NeotestConfig.setup_adapters()
     }),
 
     -- Rust
-    require("neotest-rust")({
-      args = { "--no-capture" },
-      dap_adapter = "lldb",
-    }),
+    require("rustaceanvim.neotest"),
 
     -- JavaScript/TypeScript (Jest)
     require("neotest-jest")({
@@ -203,7 +200,7 @@ return {
     -- Language adapters
     "nvim-neotest/neotest-python",
     "nvim-neotest/neotest-go",
-    "rouge8/neotest-rust",
+    "mrcjkb/rustaceanvim",
     "nvim-neotest/neotest-jest",
     "alfaix/neotest-gtest",
     "Issafalcon/neotest-dotnet",

@@ -5,7 +5,7 @@ return {
   "NeogitOrg/neogit",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "sindrets/diffview.nvim",
+    "esmuellert/codediff.nvim",
   },
   cmd = "Neogit",
   keys = {
@@ -32,6 +32,15 @@ return {
     { "<leader>gp", "<cmd>Neogit pull<cr>", desc = "neogit: pull" },
     { "<leader>gP", "<cmd>Neogit push<cr>", desc = "neogit: push" },
     { "<leader>gf", "<cmd>Neogit fetch<cr>", desc = "neogit: fetch" },
+    { "<leader>go", function()
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == "NeogitConsole" then
+          vim.api.nvim_set_current_win(win)
+          return
+        end
+      end
+      vim.notify("No Neogit console open", vim.log.levels.WARN)
+    end, desc = "neogit: focus console" },
     { "<leader>gl", "<cmd>Neogit log<cr>", desc = "neogit: log" },
     { "<leader>gn", "<cmd>Neogit branch<cr>", desc = "neogit: branch" },
     { "<leader>gm", "<cmd>Neogit merge<cr>", desc = "neogit: merge" },
@@ -41,8 +50,9 @@ return {
     require("neogit").setup({
       integrations = {
         telescope = false,
-        diffview = true,
+        codediff = true,
       },
+      diff_viewer = "codediff",
       graph_style = "unicode",
       auto_refresh = true,
       filewatcher = {

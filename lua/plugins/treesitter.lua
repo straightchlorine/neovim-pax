@@ -1,7 +1,7 @@
 -- nvim-treesitter (main branch, Neovim 0.12+)
 -- https://github.com/nvim-treesitter/nvim-treesitter/tree/main
 --
--- Archived; left for parser installation + structural highlighting.
+-- Parser installation, highlighting, indent and folding.
 
 return {
   "nvim-treesitter/nvim-treesitter",
@@ -62,8 +62,7 @@ return {
       ts.install(missing)
     end
 
-    -- Core drives highlight + indent per buffer.
-    -- For now nvim-ufo (ufo.lua) owns folding via its providers.
+    -- Core drives highlight + indent + folding per buffer.
     vim.api.nvim_create_autocmd("FileType", {
       callback = function(ev)
         local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].filetype)
@@ -71,6 +70,8 @@ return {
           return
         end
         vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        vim.wo[0][0].foldmethod = "expr"
+        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
       end,
     })
   end,

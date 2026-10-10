@@ -13,7 +13,7 @@ return {
     bufdelete = { enabled = true },
     debug = { enabled = true },
     dim = { enabled = true },
-    image = { enabled = true },
+    image = { enabled = true, math = { enabled = false } },
     indent = {
       enabled = true,
       animate = { enabled = false },
@@ -57,11 +57,13 @@ return {
     words = { enabled = true },
   },
   config = function(_, opts)
+    -- under tmux snacks reads TERM=xterm-256color, misses kitty and falls back to absolute
+    -- image placement, which ignores pane offsets; force kitty so it uses unicode placeholders
+    -- ponytail: trusts KITTY_WINDOW_ID, stale if the tmux session is reattached from another terminal
+    if vim.env.KITTY_WINDOW_ID and not vim.env.SNACKS_KITTY then
+      vim.env.SNACKS_KITTY = "1"
+    end
     require("snacks").setup(opts)
-    -- Snacks handles all UI interfaces since dressing.nvim is archived
-    vim.ui.select = Snacks.picker.select
-    vim.ui.input = Snacks.input
-    vim.notify = Snacks.notifier
   end,
 
   keys = {

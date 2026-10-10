@@ -6,7 +6,6 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "saghen/blink.cmp",
-    { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function()
     local keymap = vim.keymap
@@ -32,12 +31,6 @@ return {
         -- Conform's own formatters run for configured filetypes, LSP formats the
         -- rest.
 
-        opts.desc = "lsp: code actions"
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
-        opts.desc = "lsp: rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-
         opts.desc = "lsp: buffer diagnostics"
         keymap.set("n", "<leader>DD", function()
           require("snacks").picker.diagnostics_buffer()
@@ -46,11 +39,8 @@ return {
         opts.desc = "lsp: inline diagnostics"
         keymap.set("n", "<leader>Di", vim.diagnostic.open_float, opts)
 
-        opts.desc = "lsp: show doc on hover"
-        keymap.set("n", "K", vim.lsp.buf.hover, opts)
-
         opts.desc = "lsp: restart lsp"
-        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+        keymap.set("n", "<leader>rs", "<cmd>lsp restart<cr>", opts)
 
         opts.desc = "lsp: toggle inlay hints"
         keymap.set("n", "<leader>lh", function()
@@ -64,11 +54,6 @@ return {
     })
 
     local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-    capabilities.textDocument.foldingRange = {
-      dynamicRegistration = false,
-      lineFoldingOnly = true,
-    }
 
     capabilities.general = capabilities.general or {}
     capabilities.general.positionEncodings = { "utf-16" }
