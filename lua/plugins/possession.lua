@@ -3,7 +3,7 @@
 
 return {
   "jedrzejboczar/possession.nvim",
-  lazy = false,
+  event = "VeryLazy",
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
@@ -15,10 +15,9 @@ return {
       debug = false,
       logfile = false,
       prompt_no_cr = false,
-      autoload = "last", -- restore the most recently saved session on startup
       autosave = {
         current = true, -- autosave current session
-        tmp = true, -- autosave tmp session (last session before quit)
+        tmp = false, -- autosave tmp session (last session before quit)
         tmp_name = "tmp",
         on_load = true, -- autosave on session load
         on_quit = true,
