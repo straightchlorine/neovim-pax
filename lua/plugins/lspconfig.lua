@@ -21,6 +21,51 @@ return {
       float = { border = "none" },
     })
 
+    -- Inlay hints -----------------------------------------------------------------
+    -- Neovim (<= 0.12.x) caches inlay hints per *buffer*, not per client: when two
+    -- clients answer `textDocument/inlayHint` for the same buffer, the response of
+    -- one of them unlocks the (stale) hints of the other, which then get applied to
+    -- a line that has become shorter in the meantime. The decoration provider dies
+    -- with:
+    --   Invalid 'col': out of range  (inlay_hint.lua, nvim_buf_set_extmark)
+    -- Easy to hit in `.vue` buffers, where vtsls and vue_ls both answer, while
+    -- editing a comment. Upstream fix: neovim/neovim#40569 (nvim 0.13+, issue
+    -- #36318), not backported to 0.12. Until then:
+    --   * vue_ls opts out of inlay hints in the LspAttach handler below (it is in
+    --     "hybrid mode": the TS side of .vue files is served by vtsls anyway), which
+    --     leaves .vue buffers with a single hint provider;
+    --   * hints are only ever enabled while exactly one client provides them.
+
+    --- Clients of {bufnr} that can provide inlay hints.
+    --- @param bufnr integer
+    --- @return vim.lsp.Client[]
+    local function inlay_hint_clients(bufnr)
+      return vim.tbl_filter(function(c)
+        return c:supports_method("textDocument/inlayHint")
+      end, vim.lsp.get_clients({ bufnr = bufnr }))
+    end
+
+    local inlay_hint_warned = {}
+
+    --- Enable/disable inlay hints, never enabling them when that would crash.
+    --- @param bufnr integer
+    --- @param enable boolean
+    local function set_inlay_hints(bufnr, enable)
+      local providers = inlay_hint_clients(bufnr)
+      if enable and #providers > 1 then
+        enable = false
+        if not inlay_hint_warned[bufnr] then
+          inlay_hint_warned[bufnr] = true
+          vim.notify(
+            ("inlay hints off: %d LSP clients provide them (neovim#36318)"):format(#providers),
+            vim.log.levels.INFO,
+            { title = "LSP" }
+          )
+        end
+      end
+      vim.lsp.inlay_hint.enable(enable, { bufnr = bufnr })
+    end
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -42,13 +87,21 @@ return {
         opts.desc = "lsp: restart lsp"
         keymap.set("n", "<leader>rs", "<cmd>lsp restart<cr>", opts)
 
+        -- vue_ls is in "hybrid mode" (the TS side of .vue files is served by vtsls),
+        -- so it must not be a second inlay hint provider (see the note above).
+        -- Removing the capability here is the documented opt-out and keeps
+        -- nvim-lspconfig's vue_ls on_init (tsserver request forwarding) intact.
+        if client and client.name == "vue_ls" then
+          client.server_capabilities.inlayHintProvider = nil
+        end
+
         opts.desc = "lsp: toggle inlay hints"
         keymap.set("n", "<leader>lh", function()
-          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
+          set_inlay_hints(ev.buf, not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }))
         end, opts)
 
         if client and client:supports_method("textDocument/inlayHint") then
-          vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+          set_inlay_hints(ev.buf, true)
         end
       end,
     })
@@ -332,6 +385,8 @@ return {
       },
     }
 
+    -- vue_ls opts out of inlay hints in the LspAttach handler (see the note at the top
+    -- of this file).
     servers.vue_ls = {
       capabilities = capabilities,
     }
