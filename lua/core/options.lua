@@ -124,7 +124,10 @@ vim.o.linebreak = true
 vim.o.breakat = [[\ \	;:,!?]]
 
 vim.opt.wildignore:append({ "*.pyc", "node_modules", ".git" })
-vim.opt.formatoptions:append({ "tcraj" })
+-- A plain string: formatoptions is a flag set, so a Lua list adds its indexes as flags
+-- (append({ "tcraj" }) added "1" and never "r", so Enter did not continue "--" comments in SQL).
+-- "a" (reflow paragraphs while typing) left out on purpose.
+vim.opt.formatoptions:append("tcrj")
 
 vim.o.list = false
 

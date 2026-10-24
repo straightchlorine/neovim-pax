@@ -87,6 +87,11 @@ return {
         opts.desc = "lsp: restart lsp"
         keymap.set("n", "<leader>rs", "<cmd>lsp restart<cr>", opts)
 
+        -- Same as the built-in grn. With the leader, <Space>gr/<Space>gn are neogit
+        -- (rebase/branch), so "<Space>grn" opened the rebase popup instead of renaming.
+        opts.desc = "lsp: rename symbol"
+        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
         -- vue_ls is in "hybrid mode" (the TS side of .vue files is served by vtsls),
         -- so it must not be a second inlay hint provider (see the note above).
         -- Removing the capability here is the documented opt-out and keeps
@@ -389,6 +394,26 @@ return {
     -- of this file).
     servers.vue_ls = {
       capabilities = capabilities,
+    }
+
+    -- XML (pom.xml etc.). Settings go in init_options too: without them lemminx registers
+    -- formatting late and nvim logs an unregisterCapability error.
+    local lemminx_settings = {
+      xml = {
+        format = {
+          enabled = true,
+          maxLineWidth = 0, -- never rewrap long lines
+          preservedNewlines = 2, -- keep blank lines between sections
+          preserveAttributeLineBreaks = true,
+          splitAttributes = "preserve",
+          spaceBeforeEmptyCloseTag = false, -- <relativePath/>, as Maven writes it
+        },
+      },
+    }
+    servers.lemminx = {
+      capabilities = capabilities,
+      init_options = { settings = lemminx_settings },
+      settings = lemminx_settings,
     }
 
     local simple_servers = {

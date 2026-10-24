@@ -15,7 +15,16 @@ return {
       ["<C-p>"] = { "show", "select_prev", "fallback" },
       ["<C-y>"] = { "select_and_accept" },
       ["<C-e>"] = { "cancel", "fallback" },
-      ["<CR>"] = { "accept", "fallback" },
+      -- Accept only an item picked with <C-n>/<C-p>. Plain "accept" takes the first item when
+      -- nothing is selected, so Enter in a comment inserted a suggestion instead of a new " * " line.
+      ["<CR>"] = {
+        function(cmp)
+          if cmp.get_selected_item() then
+            return cmp.accept()
+          end
+        end,
+        "fallback",
+      },
       ["<Tab>"] = { "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "snippet_backward", "fallback" },
       ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },

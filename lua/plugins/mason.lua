@@ -40,6 +40,7 @@ return {
         "eslint",
         "vtsls",
         "vue_ls",
+        "lemminx",
       },
     })
 
@@ -56,6 +57,8 @@ return {
         "netcoredbg",
         "clang-format",
         "cpplint",
+        -- pinned: Spotless in Java projects uses the same version, and 1.37+ does not run on Java 21
+        { "google-java-format", version = "v1.36.1" },
       },
       auto_update = false,
       run_on_start = false,

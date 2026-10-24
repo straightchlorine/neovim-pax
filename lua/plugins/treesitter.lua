@@ -34,6 +34,7 @@ return {
       "go",
       "html",
       "java",
+      "javadoc",
       "javascript",
       "json",
       "latex",
@@ -51,6 +52,7 @@ return {
       "vim",
       "vimdoc",
       "vue",
+      "xml",
       "yaml",
     }
 
@@ -66,10 +68,19 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       callback = function(ev)
         local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].filetype)
-        if not lang or not pcall(vim.treesitter.start, ev.buf, lang) then
+        -- Old parsers left in the plugin dir by the master branch have no queries here; starting
+        -- treesitter for them turns off regex syntax and leaves the buffer uncolored.
+        if not lang or not vim.treesitter.query.get(lang, "highlights") then
           return
         end
-        vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        if not pcall(vim.treesitter.start, ev.buf, lang) then
+          return
+        end
+        -- Java keeps its built-in indent (GetJavaIndent): treesitter indents Javadoc as injected
+        -- HTML, so Enter after " * <p>Text" gave "    * " instead of " * ".
+        if lang ~= "java" then
+          vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
         vim.wo[0][0].foldmethod = "expr"
         vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
       end,
