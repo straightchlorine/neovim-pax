@@ -48,6 +48,10 @@ return {
       ensure_installed = {
         "prettier",
         "prettierd",
+        "shfmt",
+        "shellcheck",
+        "asmfmt",
+        "csharpier",
         "stylua",
         "ruff",
         "debugpy",

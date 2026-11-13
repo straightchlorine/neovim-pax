@@ -24,8 +24,9 @@ return {
       python = { "ruff_format" },
       sql = { "sqlfluff", "sql_formatter" },
       lua = { "stylua" },
-      sh = { "beautysh" },
-      zsh = { "beautysh" },
+      sh = { "shfmt" },
+      bash = { "shfmt" },
+      zsh = { "shfmt" },
       cpp = { "clang-format" },
       c = { "clang-format" },
       arduino = { "clang-format" },
@@ -59,6 +60,11 @@ return {
     notify_on_error = true,
 
     formatters = {
+      -- /usr/sbin/latexindent comes first on PATH and is missing Perl modules;
+      -- the Mason build is self-contained. Point at it explicitly.
+      latexindent = {
+        command = vim.fn.stdpath("data") .. "/mason/bin/latexindent",
+      },
       prettierd = {
         env = {
           PRETTIER_LEGACY_CLI = "1",

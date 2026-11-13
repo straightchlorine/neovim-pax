@@ -29,6 +29,43 @@ return {
       rust = { "clippy" },
     }
 
+    -- Vale needs a config; without one it exits with code 2 and nvim-lint shows
+    -- "Linter command `vale` exited with code: 2" and a parser error on every save.
+    -- Find the project config from the buffer, fall back to a user-level one.
+    local function find_vale_config(bufnr)
+      local name = vim.api.nvim_buf_get_name(bufnr)
+      local dir = name ~= "" and vim.fs.dirname(name) or vim.fn.getcwd()
+      local project = vim.fs.find(".vale.ini", { path = dir, upward = true })[1]
+      if project then
+        return project
+      end
+
+      local home = vim.env.HOME or ""
+      for _, candidate in ipairs({
+        (vim.env.XDG_CONFIG_HOME or home .. "/.config") .. "/vale/.vale.ini",
+        home .. "/.vale.ini",
+      }) do
+        if vim.uv.fs_stat(candidate) then
+          return candidate
+        end
+      end
+    end
+
+    lint.linters.vale.ignore_exitcode = true
+    lint.linters.vale.args = {
+      "--no-exit",
+      "--output",
+      "JSON",
+      "--ext",
+      function()
+        return "." .. vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":e")
+      end,
+      "--config",
+      function()
+        return find_vale_config(0) or ""
+      end,
+    }
+
     lint.linters.luacheck.args = {
       "--globals",
       "vim",
@@ -68,7 +105,13 @@ return {
         end
 
         if vim.api.nvim_buf_is_valid(bufnr) then
-          require("lint").try_lint(nil, { bufnr = bufnr })
+          local linters = lint.linters_by_ft[vim.bo[bufnr].filetype]
+          if linters and vim.tbl_contains(linters, "vale") and not find_vale_config(bufnr) then
+            linters = vim.tbl_filter(function(name)
+              return name ~= "vale"
+            end, linters)
+          end
+          require("lint").try_lint(linters, { bufnr = bufnr })
         end
       end, debounce_ms)
     end

@@ -9,6 +9,17 @@ vim.filetype.add({
   },
 })
 
+-- Shell scripts are 4-space indented (shfmt reads shiftwidth when formatting).
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "sh", "bash", "zsh" },
+  callback = function()
+    vim.bo.expandtab = true
+    vim.bo.shiftwidth = 4
+    vim.bo.tabstop = 4
+    vim.bo.softtabstop = 4
+  end,
+})
+
 -- Provider configuration
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_node_provider = 0
